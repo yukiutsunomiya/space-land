@@ -1,0 +1,730 @@
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[4]!./src/scss/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+  @charset "UTF-8";
+
+  /*
+  Theme Name: Space Land
+  Theme URI: https://example.com
+  Author: yukiutsunomiya
+  Author URI: https://example.com
+  Description:Space Landのホームページです。
+  Version: 1.0
+  */
+
+  body{
+    font-family: 'Mochiy Pop P One', sans-serif;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .pre-ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .pre-li {
+    list-style:none;
+    width: 16.66%;
+  }
+  
+  .pre-li a {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  .pre-li a span {
+    color: #053e62;
+    font-size: 13px;
+  }
+
+  .pre-li:hover{
+    background-color: #142656;
+  }
+
+  .pre-li a:hover,.pre-li a span:hover{
+    color: white;
+    text-decoration: none;
+  }
+  
+
+  header{
+    /*
+    position: sticky;
+	  top: 0;  
+     */
+    background-color: white;
+  }
+  * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .sideBanner{
+    margin-top:30px ;
+  }
+
+  /*
+  .sidePickupchara{
+    background-color: slategrey;
+  }
+  */
+
+  @media screen and (max-width: 1300px) {
+    /* 959px以下に適用されるCSS（タブレット用）*/
+    .navbar{
+      padding: 0;
+    }
+  }
+
+ .navbar-toggler{
+    border-color: white;
+  }
+
+  .dropdown-toggle:after { 
+    content: none; 
+  }
+
+  .navrow{
+    padding: 5px 0;
+  }
+
+  .nav-link{
+    color: black;
+  }
+
+  .nav-link:hover{
+    color: black;
+    opacity: 0.5;
+    cursor: pointer;
+  }
+
+
+  .navbar-brand{
+    color: white;
+  }
+
+  .img-top{
+    height: 60px;
+  }
+
+  .img-icon{
+    width: 20px;
+    height: 20px;
+  }
+
+  .img-book{
+    width: 100px;
+    height: 130px;
+  }
+  
+  .card-img-top{
+    height: 400px;
+    width:300px;
+    display: inline-block;
+  }
+
+  .card-img-top1{
+    height: 400px;
+    width:280px;
+    display: inline-block;
+  }
+
+  .top-title-span{
+    font-size: 15px;
+  }
+
+  .top-img{
+    height: 500px;
+  }
+
+  .background-many_cat1{
+    background-image: url("img/many_cat1.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-many_cat2{
+    background-image: url("img/many_cat2.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-many_cat3{
+    background-image: url("img/many_cat3.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat1{
+    background-image: url("img/cat1.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat2{
+    background-image: url("img/cat2.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat3{
+    background-image: url("img/cat3.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat4{
+    background-image: url("img/cat4.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat5{
+    background-image: url("img/cat5.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat6{
+    background-image: url("img/cat6.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat7{
+    background-image: url("img/cat7.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat8{
+    background-image: url("img/cat8.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat9{
+    background-image: url("img/cat9.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat10{
+    background-image: url("img/cat10.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat11{
+    background-image: url("img/cat11.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat12{
+    background-image: url("img/cat12.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat13{
+    background-image: url("img/cat13.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .background-cat14{
+    background-image: url("img/cat14.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .care-color{
+    color: white;
+  }
+
+  .care-box{
+    width:500px;
+    height:auto;
+    margin:100px auto;
+
+  }
+
+  .background-cat15{
+    background-image: url("img/cat15.jpg");
+    background-size: cover;
+    height: 320px;
+    width: 320px;
+  }
+
+  .card-img-top2{
+    height: 400px;
+    width:270px;
+    display: inline-block;
+  }
+
+  .card-img-top3{
+    height: 400px;
+    width:240px;
+    display: inline-block;
+  }
+
+  .book-p{
+    line-height: 0rem;
+  }
+
+  .about-img{
+    width: 420px;
+    height: 420px;
+    background-color: white;
+  }
+  
+
+  .button_wrapper{
+    text-align:center;
+  }
+
+  .ONLINE_STORE_button_wrapper{
+    text-align:center;
+    padding-top: 90px;
+  }
+  .CareANDCleaning{
+    background-image: url("img/care3.jpg");
+    background-size: cover; 
+    height: 750px;
+  }
+
+  .faq-top-img{
+    background-image: url("img/faq-top-img.webp");
+    background-size: cover; 
+    height: 500px;
+  }
+
+  .footer-img{
+    background-image: url("img/footer-img.jpg");
+    background-size: cover;
+    height: 500px;
+  }
+
+  .light_blue_background{
+    background-color: #D7EEFF;
+  }
+
+  .CareANDCleaning_btn{
+    text-align: center;
+    padding-top: 350px;
+  }
+
+  .news-img{
+    height: 250px;
+    background-color: white;
+  }
+
+  input { margin : 0 auto ; }
+
+  .carousel-line{
+    padding-top: 5px;
+    padding-bottom:1px ;
+    background-color: #142656;
+  }
+
+  .container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1000px;
+  }
+
+  .faq_container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 650px;
+  }
+
+  .faq-box{
+    height: 180px;
+  }
+
+  .news-content{
+    height: 220px;
+  }
+
+  .CareANDCleaning-title{
+    padding-top:100px;
+  }
+
+  .online-Store-img{
+    width: 400px;
+  }
+
+  .message-section{
+    margin-bottom: 40px;
+  }
+
+  .outline-section{
+    margin-top: 40px;
+  }
+
+  .about-section{
+    height: auto;
+    border-radius: 30%;
+  }
+
+  .video-size{
+    height: 600px;
+    width: 1000px;
+  }
+
+  .btn-hover:hover{
+    background-color: white;
+    color: #3399ff;
+    cursor: pointer;
+  }
+
+  .carousel-line-p{
+    color: white;
+    text-align: right;
+  }
+
+  .col-padding-0{
+    padding:0;
+  }
+
+  multi-carousel {
+    opacity: 0;
+    padding: 0 25px;
+  }
+  .multi-carousel .carousel-control-next,
+  .multi-carousel .carousel-control-prev {
+    width: 25px;
+    background: gray;    
+  }
+
+  .dropdown:hover>.dropdown-menu{
+		display: block;
+	}
+
+  .update-information-h3{
+    margin-top: 30px;
+  }
+
+  .update-information-h3 > a{
+    color: #142656;
+  }
+
+  .s-title {
+    position: relative;
+    margin: 30px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #142656;
+    color: #142656;
+    font-weight: 600;
+    font-size: 30px;
+    font-family: "YuMincho", "Yu Mincho Medium", "Yu Mincho", yu-mincho-pr6, Verdana, Meiryo, sans-serif;
+    letter-spacing: -0.7px;
+  }
+  
+  .s-title::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    height: 6px;
+    background-color: #142656;
+    content: "";
+  }
+
+  .news .s-title {
+    margin: 0 0 40px 0;
+  }
+
+  .update-information-tr{
+    border-top:1px solid black;
+  }
+
+  .last-update-information-tr{
+    border-top:1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  .contents-prev-next{
+    display: none;
+  }
+  
+  footer {
+    height: auto;
+    margin: 0 auto;
+    padding: 30px 70px 30px 50px;
+    background-color: #142656; 
+  }  
+
+  /*overview*/
+  .chairman-img{
+    width: 250px;
+    height: 250px;
+  }
+
+  .overview-img{
+    width: 320px;
+    height: 320px;
+  }
+  
+  .organization-table{
+    width: 1100px;
+    height:100%;
+    
+  }
+
+  .lecture-img{
+    width: 500px;
+    height: 500px;
+  }
+
+  .card{
+    height: 600px;
+  }
+
+  .card-writings{
+    height: 200px;
+  }
+
+  .commentary-card{
+    height: 550px;
+  }
+  .commentary-card-body{
+    height: 115px;
+  }
+
+  .research-activities{
+    background-color:#142656;
+    color:white;
+  }
+
+  .event-img{
+    width: 400px;
+    height: 400px;
+  }
+
+  .border-director{
+    border-bottom : solid 2px black;
+  }
+
+  .enrollment-table{
+    table-layout: fixed;
+  }
+
+  .enrollment-b{
+    display: inline-block;
+    width:500px;
+  }
+
+  .collaboration-article{
+    background-color: #D7EEFF;
+  }
+
+  .display-inline-block{
+    display: inline-block;
+  }
+
+  .enrollment-left{
+    width:100px;
+    height: 100px;
+    background-color: #142656;
+  }
+  table{
+    border-spacing: 20px 10px;
+  }
+  td{
+    padding: 0 20px;
+  }
+
+  .enrollment-right{
+
+    width:100px;
+    height: 100px;
+    background-color: salmon;
+  }
+
+  .btn-blue{
+    background-color: #142656;
+    color: white;
+  }
+
+  .btn-blue:hover{
+    color: white;
+    opacity: 0.8;
+  }
+
+  .clear{
+    clear: both;
+  }
+  
+  .enrollment-table{
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .th-width{
+    width: 100px;
+  }
+
+  .main-bottom{
+    margin-top: 20px;
+  }
+    
+  @media screen and (max-width: 480px) {
+    /* 480px以下に適用されるCSS（スマホ用） */
+    .commentary-mobile-14px{
+      font-size:14px !important;
+    }
+
+    .commentary-mobile-13px{
+      font-size: 13px !important;
+    }
+
+    .commentary-mobile-text3{
+      font-size: 11px !important;
+    }
+
+    .commentary-mobile-15px{
+      font-size: 15px !important;
+    }
+
+    .display-none{
+      display: none;
+    }
+
+    .visibility-hidden{
+      visibility: hidden;
+    }
+    
+  }
+  
+  /*------------------------------------------------------------*/
+/* 実行などボタン周り */
+/*------------------------------------------------------------*/
+.regist_button{
+  margin: 1.5em 0 0 0;
+  padding: 2em;
+  border: 1px solid #90847b;
+  background-color: #edebe3;
+  text-align: center;
+}
+
+/*------------------------------------------------------------*/
+/* フォームラベル */
+/*------------------------------------------------------------*/
+section.container label.head{
+  margin-top: 1em;
+  padding: 0.8em 0;
+  border-left: 5px solid #3399ff;
+  background-color: #e8f5ff;
+  text-align: left;
+  font-size: 90%;
+  font-weight: normal;
+}
+
+fieldset{
+  width: 500px;
+}
+
+.director-card{
+  height: 470px;
+}
+
+a{
+  text-decoration: none;
+  color:black;
+}
+
+a:hover{
+  opacity: 0.8;
+}
+
+.fpc-news-23-text{
+  font-size: 15px;
+}
+
+.font-16px{
+  font-size: 16px;
+}
+
+.commentary-25-text{
+  font-size: 17px;
+}
+
+.carousel-img{
+  height: 400px;
+}
+
+
+.scroll table{
+  width:100%;
+}
+.scroll{
+  overflow: auto;/*tableをスクロールさせる*/
+  white-space: nowrap;/*tableのセル内にある文字の折り返しを禁止*/
+}
+.scroll::-webkit-scrollbar{/*tableにスクロールバーを追加*/
+  height: 5px;
+ }
+ .scroll::-webkit-scrollbar-track{/*tableにスクロールバーを追加*/
+  background: #F1F1F1;
+ }
+ .scroll::-webkit-scrollbar-thumb {/*tableにスクロールバーを追加*/
+  background: #BCBCBC;
+ }
+  
+/*wordpress */
+
+/* Contact Form7 */
+
+.contact7 {
+	max-width: 100%;
+	box-sizing: border-box;
+}
+.contact7 dd {
+	margin: 0 0 30px 0;
+
+}
+
+.contact7 dt {
+	font-weight: normal;
+}
+
+/* 必須マーク */
+
+
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[4]!./src/scss/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+
+
