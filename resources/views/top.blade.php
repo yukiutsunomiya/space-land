@@ -23,6 +23,9 @@
         <div class="container">
           <h2 class="fw-bold text-center mb-0">Space Land</h2>
           <p class="fw-bold text-center my-3 ">（株）総合研究舎</p>
+          @auth
+            <p class="fw-bold">ログインユーザー名：<?php $user = Auth::user(); ?>{{ $user->name }}</p>
+          @endauth
           <nav class="navbar navbar-expand-md">
             <!-- ハンバーガーメニュー -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +66,14 @@
                 @auth
                   <ul class="navbar-nav">
                     <li class="nav-item py-2">
-                      <a href="{{ url('/') }}" class="nav-link fw-bold">logout</a>
+                      <a href="{{ route('logout') }}" 
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="nav-link fw-bold">
+                        {{ __('Logout') }}
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
                     </li>
                   </ul>
                 @else

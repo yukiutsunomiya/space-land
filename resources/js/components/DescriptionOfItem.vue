@@ -1,7 +1,7 @@
 <template >
   <article class="light_blue_background">
-      <div class="container-fluid">
-        <h2 class="py-4 text-center fw-bold d-block">
+    <div class="container-fluid">
+      <h2 class="py-4 text-center fw-bold d-block">
           {{this.$route.query.name}}
         </h2>
         <section class="about-section">
@@ -14,9 +14,9 @@
         </p>
         <div class="text-center pt-3 py-4">
           <button type="button" onclick="location.href='../items'" class="btn btn-primary btn-hover">一覧に戻る</button> 
-        </div>
-      </div>
-    </article>
+        </div>  
+    </div> 
+  </article>
 </template>
 <script>
   export default{
