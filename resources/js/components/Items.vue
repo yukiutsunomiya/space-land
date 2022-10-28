@@ -15,7 +15,7 @@
                 <h4 class="text-center">{{product.name}}</h4>
                 <p class="text-center">
                 <br><br>
-                {{product.price}}
+                {{product.price}}円
                 </p>
                 <div class="text-center pt-2">
                   <router-link :to="`/item?name=${product.name}&img=${product.img1}&price=${product.price}`"  class="btn btn-primary btn-hover d-inline-block mr-l bttoon-right">もっと見る</router-link>
