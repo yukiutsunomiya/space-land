@@ -4,8 +4,8 @@
       <h2 class="py-4 text-center fw-bold d-block">
           {{this.$route.query.name}}
         </h2>
-        <section class="about-section">
-          <img :src=" `/img/{{this.$route.query.img}}`" class="about-img">
+        <section class="text-center">
+          <img :src="/img/ + this.$route.query.img" class="about-img">
         </section>
         <p class="h5 pt-2">
           発売日：2021年7月　販売中<br>

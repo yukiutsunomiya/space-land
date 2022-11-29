@@ -73,8 +73,10 @@
  const app = createApp({});
  
  import ExampleComponent from './components/ExampleComponent.vue';
+ import ComoditySelect from './components/ComoditySelect.vue';
  app.component('example-component', ExampleComponent);
- 
+ app.component('comodity-select', ComoditySelect);
+
  /**
   * The following block of code may be used to automatically register your
   * Vue components. It will recursively scan this directory for the Vue

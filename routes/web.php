@@ -19,13 +19,18 @@ Route::get('/welcome', function () {
 
 Auth::routes();
 
+Route::get('/commodity', 'App\Http\Controllers\MainController@commodity');
+Route::get('/confirm', 'App\Http\Controllers\MainController@confirm');
+Route::get('/carts', 'App\Http\Controllers\MainController@carts');
+Route::get('/purchases', 'App\Http\Controllers\MainController@purchases');
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 Route::get('/{any}', function () {
     return view('top');
 })->where('any', '.*');
-
-
-
-
-
