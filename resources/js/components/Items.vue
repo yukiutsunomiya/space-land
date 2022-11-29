@@ -19,7 +19,10 @@
                 </p>
                 <div class="text-center pt-2">
                   <router-link :to="`/item?name=${product.name}&img=${product.img1}&price=${product.price}`"  class="btn btn-primary btn-hover d-inline-block mr-l bttoon-right">もっと見る</router-link>
-                  <a :href ="`/commodity?id=${product.id}&name=${product.name}&price=${product.price}&img1=${product.img1}&img2=${product.img2}`" class="btn btn-primary btn-hover d-inline-block">購入する</a>
+                  <div v-if="user">
+                    <a :href ="`/commodity?id=${product.id}&name=${product.name}&price=${product.price}&img1=${product.img1}&img2=${product.img2}`" class="btn btn-primary btn-hover d-inline-block">購入する</a>
+                  </div>
+                  
                   <!--
                     <a :href ="`/commodity?id=${product.id}&name=${product.name}&price=${product.price}&img1=${product.img1}&img2=${product.img2}`" class="btn btn-primary btn-hover d-inline-block">購入する</a>
                   -->
@@ -56,9 +59,9 @@
   export default{
     data(){
       return{
-        products:[],      
+        products:[], 
+        user:''     
       }
-
     },
     created(){
       this.axios.get('api/items').then(response => {

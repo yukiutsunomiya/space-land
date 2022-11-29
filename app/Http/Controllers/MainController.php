@@ -14,7 +14,7 @@ class MainController extends Controller
     }
 
     public function select(Request $request)
-    {
+    {   
         $param = ['name' => $request -> name ];
         $product = DB::select('select * from products where name = :name', $param);
         return $product;                     
@@ -56,13 +56,24 @@ class MainController extends Controller
     }
 
     public function carts(Request $request){
-        $carts = DB::select('select * from carts');
+        $params= [
+            'user_id' => auth()->id()
+            ];
+        $carts = DB::select('select * from carts where user_id = :user_id',$params);
         $carts_json = json_encode($carts);
-        return view('carts',['carts' => $carts,'carts_json' =>$carts_json]);
+        return view('carts',['carts' => $carts]);
     }
 
     public function purchases(Request $request){
         $purchases = DB::select('select * from purchases');
         return view('purchases',['purchases' => $purchases]);
+     }
+
+    public function cartDeleate(Request $request){
+        $params= [
+            'id' => $request -> id
+            ];
+        $carts = DB::delete('delete from carts where id = :id',$params);
+        return redirect('/carts');
      }
 } 

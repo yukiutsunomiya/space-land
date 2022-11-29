@@ -1,4 +1,4 @@
-<template v-for="product in products" :key="product.name">
+<template v-for="product in products" :key="product.id">
     <div class="container"> 
       <h2 class="pt-1 my-4 fw-bold">
         商品購入

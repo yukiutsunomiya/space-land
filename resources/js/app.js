@@ -74,8 +74,10 @@
  
  import ExampleComponent from './components/ExampleComponent.vue';
  import ComoditySelect from './components/ComoditySelect.vue';
+ import CartsSelect from './components/CartsSelect.vue';
  app.component('example-component', ExampleComponent);
  app.component('comodity-select', ComoditySelect);
+ app.component('carts-select', CartsSelect);
 
  /**
   * The following block of code may be used to automatically register your

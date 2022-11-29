@@ -1,38 +1,33 @@
-<template v-for="cart in carts_json">
-          <div class="col-lg-4 col-md-6">
-            <div class="">
-              <div class="pt-2 px-4">
-                <h5 class="text-center">{{cart.name}}</h5>
-                <p class="text-center">
-                  商品金額：{{cart.price}}円</br>
-                  <select name="quantity" v-model="selectValue" required>
-                    
-                    @if({{cartquantity}})
-
-                    @elseif
-                      <option value="1">１</option>
-                    @endif
-                    <option value="1">１</option>
-                    <option value="2">２</option>
-                    <option value="3">３</option>
-                    <option value="4">４</option>
-                    <option value="5">５</option>
-                    </select>
-                  個数：{{$cart->quantity}}円</br>
-                  合計金額：{{$cart->quantity}}円
-                </p>
-              </div>
-              <img src="/img/{{$cart->img1}}" class="d-inline-block w-100">
-            </div>       
-          </div>
+<template>
+    <select name="quantity" v-model="selectValue" required>
+        <option  value="1">１</option>
+        <option value="2">２</option>
+        <option value="3">３</option>
+        <option value="4">４</option>
+        <option value="5">５</option>
+    </select>
 </template>
-          <script>
-    export default {
-        props: {
-            shopData: {
-                type: Object
-            },
+<script>
+    export default{
+        props: ["cartQuantity"],
+        data(){
+            return{
+            cartQuantity:cartQuantity,
+            }
         },
-       name:'shop-page'
-   }
+      
+      created(){
+        this.carts = JSON.stringify(this.carts_json);
+        this.cart2s = this.carts.split('},');
+        
+        console.log("carts_json"+this.carts_json);
+        console.log("JSON.stringify(this.carts_json)"+JSON.stringify(this.carts_json));
+        console.log("JSON.parse(JSON.stringify(this.carts_json)"+JSON.parse(JSON.stringify(this.carts_json)));
+        console.log("Object.entries(obj);"+Object.entries(Object.entries(JSON.stringify(this.carts_json))));
+        console.log("split"+this.cart2s);
+        for (let i = 0; i < this.cart2s.length; i++) {
+            console.log(this.cart2s[i]); 
+            }
+        }
+      }                              
 </script>

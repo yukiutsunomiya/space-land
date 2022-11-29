@@ -23,7 +23,7 @@ Route::get('/commodity', 'App\Http\Controllers\MainController@commodity');
 Route::get('/confirm', 'App\Http\Controllers\MainController@confirm');
 Route::get('/carts', 'App\Http\Controllers\MainController@carts');
 Route::get('/purchases', 'App\Http\Controllers\MainController@purchases');
-
+Route::get('/cartDeleate', 'App\Http\Controllers\MainController@cartDeleate');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
