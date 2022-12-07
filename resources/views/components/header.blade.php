@@ -12,7 +12,13 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     
@@ -21,7 +27,7 @@
     <div id="app">
       <header class="header">
         <div class="container">
-          <h2 class="fw-bold text-center mb-0">Space Land</h2>
+          <h2 class="fw-bold text-center mb-0 mt-2">Space Land</h2>
           <p class="fw-bold text-center my-3 ">（株）総合研究舎</p>
           @auth
             <p class="fw-bold">ログインユーザー名：<?php $user = Auth::user(); ?>{{ $user->name }}</p>
@@ -33,16 +39,21 @@
             </button>
             <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
           @if(Request::is('/') || Request::is('news') || Request::is('items') || Request::is('q-and-a') || Request::is('online-store'))
+            
+              <header-nav></header-nav>
+            
             <ul class="navbar-nav">
-                <li class="nav-item py-2">
-                  <router-link class="nav-link fw-bold" to="/">HOME</router-link>
-                </li>
-              </ul>
-              <ul class="navbar-nav">
-                <li class="nav-item py-2">
-                  <router-link class="nav-link fw-bold" to="/#about">ABOUT</router-link>
-                </li>
-              </ul>
+              <li class="nav-item dropdown py-2">
+                <router-link class="nav-link dropdown-toggle fw-bold" to="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Space Land
+                </router-link>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><router-link class="dropdown-item" to="/">HOME</router-link></li>
+                  <li><router-link class="dropdown-item" to="/">ABOUT</router-link></li>
+                  <li><router-link class="dropdown-item" to="/">CONTACT</router-link></li>
+                </ul>
+              </li>
+            </ul>
               <ul class="navbar-nav">
                 <li class="nav-item py-2">
                   <router-link class="nav-link fw-bold" to="/news">NEWS</router-link>
@@ -50,7 +61,11 @@
               </ul>
               <ul class="navbar-nav">
                 <li class=" nav-item py-2">
+                @auth
+                  <router-link class="nav-link fw-bold" to="/items?session=user">ITEMS</router-link>
+                @else
                   <router-link class="nav-link fw-bold" to="/items">ITEMS</router-link>
+                @endauth
                 </li>
               </ul>
               <ul class="navbar-nav">
@@ -60,18 +75,44 @@
               </ul>
               <ul class="navbar-nav">
                 <li class="nav-item py-2">
+                @auth
+                  <router-link class="nav-link fw-bold" to="/online-store?session=user">ONLINE STORE</router-link>
+                @else
                   <router-link class="nav-link fw-bold" to="/online-store">ONLINE STORE</router-link>
+                @endauth
                 </li>
               </ul>
           @else
             <ul class="navbar-nav">
-              <li class="nav-item py-2">
-                <a class="nav-link fw-bold" href="/">HOME</a>
+              <li class="nav-item dropdown py-2">
+                <a class="nav-link dropdown-toggle fw-bold" href="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Space Land
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="/">HOME</a></li>
+                  <li><a class="dropdown-item" href="/">ABOUT</a></li>
+                  <li><a class="dropdown-item" href="/">CONTACT</a></li>
+                </ul>
               </li>
-            </ul>  
+            </ul>
+            <ul class="navbar-nav ">
+              <li class="nav-item py-2">
+                <a class="nav-link fw-bold" href="/items?session=user">ITEMS</a>
+              </li>
+            </ul>
           @endif
               @if (Route::has('login'))
                 @auth
+                  <ul class="navbar-nav">
+                    <li class="nav-item py-2">
+                      <a class="nav-link fw-bold" href="/carts">CARTS</a>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav">
+                    <li class="nav-item py-2">
+                      <a class="nav-link fw-bold" href="/purchases">購入履歴</a>
+                    </li>
+                  </ul>
                   <ul class="navbar-nav">
                     <li class="nav-item py-2">
                       <a href="{{ route('logout') }}" 
@@ -102,6 +143,7 @@
             </div>
           </nav>
         </div>
+        
         <!--
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">

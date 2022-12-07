@@ -14,9 +14,11 @@
  import Qanda from './components/Qanda.vue';
  import OnlineStore from './components/OnlineStore.vue';
  import DescriptionOfItem from './components/DescriptionOfItem.vue';
- import Commodity from './components/Commodity.vue';
  import axios from 'axios' //追記
  import VueAxios from 'vue-axios' //追記
+ import jQuery from 'jquery'
+
+ 
  
  const routes = [
   {
@@ -49,12 +51,7 @@
     name: 'DescriptionOfItem',
     component: DescriptionOfItem
   },
-  {
-    path: '/commodity',
-    name: 'Commodity',
-    component: Commodity
-  }
-
+  
  ];
  
  const router = createRouter({
@@ -75,9 +72,14 @@
  import ExampleComponent from './components/ExampleComponent.vue';
  import ComoditySelect from './components/ComoditySelect.vue';
  import CartsSelect from './components/CartsSelect.vue';
+ import changeCart from './components/changeCart.vue';
+ import headerNav from './components/headerNav.vue';
  app.component('example-component', ExampleComponent);
  app.component('comodity-select', ComoditySelect);
  app.component('carts-select', CartsSelect);
+ app.component('items', Items);
+ app.component('change-cart', changeCart);
+ app.component('header-nav', headerNav);
 
  /**
   * The following block of code may be used to automatically register your

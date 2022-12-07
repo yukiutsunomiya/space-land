@@ -14,20 +14,6 @@
             return{
             cartQuantity:cartQuantity,
             }
-        },
-      
-      created(){
-        this.carts = JSON.stringify(this.carts_json);
-        this.cart2s = this.carts.split('},');
-        
-        console.log("carts_json"+this.carts_json);
-        console.log("JSON.stringify(this.carts_json)"+JSON.stringify(this.carts_json));
-        console.log("JSON.parse(JSON.stringify(this.carts_json)"+JSON.parse(JSON.stringify(this.carts_json)));
-        console.log("Object.entries(obj);"+Object.entries(Object.entries(JSON.stringify(this.carts_json))));
-        console.log("split"+this.cart2s);
-        for (let i = 0; i < this.cart2s.length; i++) {
-            console.log(this.cart2s[i]); 
-            }
         }
       }                              
 </script>

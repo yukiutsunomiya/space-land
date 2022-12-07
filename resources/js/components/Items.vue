@@ -19,9 +19,12 @@
                 </p>
                 <div class="text-center pt-2">
                   <router-link :to="`/item?name=${product.name}&img=${product.img1}&price=${product.price}`"  class="btn btn-primary btn-hover d-inline-block mr-l bttoon-right">もっと見る</router-link>
-                  <div v-if="user">
+                  <template v-if="session === 'user'">
                     <a :href ="`/commodity?id=${product.id}&name=${product.name}&price=${product.price}&img1=${product.img1}&img2=${product.img2}`" class="btn btn-primary btn-hover d-inline-block">購入する</a>
-                  </div>
+                  </template>
+                  <template v-else>
+                    <button v-on:click="buttonClicked" class="btn btn-primary btn-hover d-inline-block">商品購入方法</button>
+                  </template>
                   
                   <!--
                     <a :href ="`/commodity?id=${product.id}&name=${product.name}&price=${product.price}&img1=${product.img1}&img2=${product.img2}`" class="btn btn-primary btn-hover d-inline-block">購入する</a>
@@ -60,15 +63,23 @@
     data(){
       return{
         products:[], 
-        user:''     
+        session:this.$route.query.session
       }
     },
     created(){
       this.axios.get('api/items').then(response => {
         this.products = response.data;
         });
+
+        console.log(this.$route.query.session);
     },
+    methods:{
+        buttonClicked(){
+          window.alert('商品を購入するにはユーザー登録またはログインの実施をよろしくお願いいたします。');
+      }
+    }
   }
+
 </script>
 <style scoped> 
 .bttoon-right{

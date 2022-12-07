@@ -24,6 +24,14 @@ Route::get('/confirm', 'App\Http\Controllers\MainController@confirm');
 Route::get('/carts', 'App\Http\Controllers\MainController@carts');
 Route::get('/purchases', 'App\Http\Controllers\MainController@purchases');
 Route::get('/cartDeleate', 'App\Http\Controllers\MainController@cartDeleate');
+Route::get('/cartDeleates', 'App\Http\Controllers\MainController@cartDeleates');
+Route::get('/changeCart', 'App\Http\Controllers\MainController@changeCart');
+Route::get('/updateCart', 'App\Http\Controllers\MainController@updateCart');
+Route::get('/Items',  function () {
+    return view('items');
+});
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

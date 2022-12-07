@@ -27,7 +27,7 @@
                 <template v-if="selectValue === '5'" name="purchasePrice" value = "this.$route.query.price">{{this.$route.query.price * 5}}円</template>
             </p>
             <button type="submit" class="btn btn-primary btn-hover d-inline-block mx-4" name="cart">カートに入れる</button>
-            <button type="submit" class="btn btn-primary btn-hover d-inline-block mx-4" name="purchase">購入する</button>
+            <button type="submit" onclick="return confirm('商品の購入でよろしいでしょうか？')"  class="btn btn-primary btn-hover d-inline-block mx-4" name="purchase">購入する</button>
         </form>
     </section>
 </template>
