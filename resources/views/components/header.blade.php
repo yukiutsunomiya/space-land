@@ -10,15 +10,13 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
+    
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!--
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-    crossorigin="anonymous"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     
@@ -40,8 +38,9 @@
             <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
           @if(Request::is('/') || Request::is('news') || Request::is('items') || Request::is('q-and-a') || Request::is('online-store'))
             
-              <header-nav></header-nav>
-            
+              <!--
+                <header-nav></header-nav>
+              -->
             <ul class="navbar-nav">
               <li class="nav-item dropdown py-2">
                 <router-link class="nav-link dropdown-toggle fw-bold" to="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,8 +48,7 @@
                 </router-link>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li><router-link class="dropdown-item" to="/">HOME</router-link></li>
-                  <li><router-link class="dropdown-item" to="/">ABOUT</router-link></li>
-                  <li><router-link class="dropdown-item" to="/">CONTACT</router-link></li>
+                  <li><router-link class="dropdown-item" to="/#about">ABOUT</router-link></li>
                 </ul>
               </li>
             </ul>
@@ -90,8 +88,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="/">HOME</a></li>
-                  <li><a class="dropdown-item" href="/">ABOUT</a></li>
-                  <li><a class="dropdown-item" href="/">CONTACT</a></li>
+                  <li><a class="dropdown-item" href="/#about">ABOUT</a></li>
                 </ul>
               </li>
             </ul>
@@ -125,6 +122,11 @@
                       </form>
                     </li>
                   </ul>
+                  <ul class="navbar-nav">
+                    <li class="nav-item py-2">
+                      <a class="nav-link fw-bold" href="/inquiryList">お問い合わせ履歴</a>
+                    </li>
+                  </ul>
                 @else
                   <ul class="navbar-nav">
                     <li class="nav-item py-2">
@@ -139,6 +141,13 @@
                     </ul>
                   @endif
                 @endauth
+              @endif
+              @if(!(Request::is('/contactconfirm')))
+              <ul class="navbar-nav ">
+                <li class="nav-item py-2">
+                  <a class="nav-link fw-bold" href="/contact">CONTACT</a>
+                </li>
+              </ul>
               @endif
             </div>
           </nav>

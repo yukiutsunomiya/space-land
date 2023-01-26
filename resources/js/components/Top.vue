@@ -36,7 +36,7 @@
         </div>
       </article>
       <!-- / トップスライド -->
-      <div class="container-fluid">
+      <div class="container-fluid " id="about">
         <article class="message-section" id="about">
           <h2 class="pt-5 text-center fw-bold d-block">
             ABOUT
@@ -123,7 +123,7 @@
             NEWS
           </h2>
           <div class="row">
-            <section class="col-lg-4 col-md-6 col-padding-1">
+            <section class="col-lg-4 col-md-6 col-padding-1 mb-3">
               <img :src="'/img/many_cat1.jpg'" class="news-img d-block w-100">
               <div class="bg-white p-3 news-content ">
                 <span class="ml-1 d-inline-block">5月19日</span>
@@ -131,7 +131,7 @@
                 <p class="pl-1">さわって楽しむやわらかフィギュアもにまるず！デザインフェスタvol.55に出展します！ 新作「クリームうさぎ」「クリームとら」「クリームシロクマ」が登場します！ 会場：東京ビ</p>
               </div>
             </section>
-            <section class="col-lg-4 col-md-6">
+            <section class="col-lg-4 col-md-6 mb-3">
               <img :src="'/img/many_cat2.jpg'" class="news-img d-block w-100">
               <div class="bg-white p-3 news-content">
                 <span>1月21日</span>
@@ -139,7 +139,7 @@
                 <p>さわって楽しむやわらかフィギュアもにまるず！ 「HandMade In Japan Fes 冬(2022) 」に出展します！ 会場：東京ビッグサイト西1・2ホール ブース番号: F-13 出展日:2022年 1月</p>
               </div>
             </section>
-            <section class="col-lg-4 col-md-6">
+            <section class="col-lg-4 col-md-6 mb-3">
               <img :src="'/img/many_cat3.jpg'" class="news-img d-block w-100">
               <div class="bg-white p-3 news-content">
                 <span>2021年11月7日</span>
@@ -171,7 +171,8 @@
       </article>
       <article class="CareANDCleaning">
       </article>
-      <article class="collaboration-article">
+      <!--
+        <article class="collaboration-article">
         <div class="container-fluid">
           <h2 class="text-center pt-4">ITEMS</h2>
           <p class="text-center">キャラクターコラボの「もにまるず 」も制作しています。</p>
@@ -225,6 +226,20 @@
           </div> 
         </div>     
       </article>
+      -->
+      <article class="collaboration-article">
+        <h2 class="text-center pt-4">ITEMS</h2>
+        <p class="text-center">キャラクターコラボの「もにまるず 」も制作しています。</p>
+        <div class="row">
+          <template v-for="product in products" :key="product.name">
+            <section class="col-xl-4 col-md-6 col-sm-12 mb-2">
+              <router-link :to ="`/item?id=${product.id}&name=${product.name}&price=${product.price}&img1=${product.img1}&img2=${product.img2}`" >
+                <img :src=" '/img/'+ product.img1" class="about-img">
+              </router-link>
+            </section>
+          </template>
+        </div>
+  </article>
       <!--
       <article>
         <div class="container-fluid">
@@ -237,39 +252,34 @@
         </div>
       </article>
       -->
-      <article>
-        <h2 class="text-center mt-4 mb-2">contact</h2>
-        <p class="text-center">お問い合わせ・もにまるずの販売・​コラボ制作依頼は</p>
-        <p class="text-center">メール・もしくは以下のフォームからご連絡ください。</p>
-
-        <div class="button_wrapper">
-            <section>
-                <form>
-                    <input placeholder="お名前" class="d-inline-block mb-3 w-25"><br>
-                    <input placeholder="メールアドレス" class="d-inline-block mb-3 w-25"><br>
-                    <input placeholder="件名" class="d-inline-block mb-3 w-25"><br>
-                    <textarea placeholder="メッセージを入力してください。" class="d-inline-block mb-4 w-25"></textarea><br>
-                    <button type="submit"  class="btn btn-primary d-inline-block mb-5 btn-hover w-25">送信する</button> 
-                </form>
-            </section>
-        </div> 
-      </article>
       <article class="footer-img">
         <div class="ONLINE_STORE_button_wrapper ">
-          <button type="button" onclick="location.href='online_store'"  class="btn btn-primary d-inline-block btn-hover w-25">ONLINE STOREを見る</button> 
+          <router-link class="btn btn-primary d-inline-block btn-hover w-25" to="/online-store">ONLINE STORE</router-link>
         </div>
       </article>
 </template>
 <script>
-import $ from "jquery";
+
 export default {
     data() {
     return {
       loading: true,
       errored: false,
       error: false,
+      products:[],
+      session:this.$route.query.session
     }
   },
+  created(){
+        this.axios.get('api/items').then(response => {
+          this.products = response.data;
+          });
+  },
+  methods:{
+          buttonClicked(){
+            window.alert('商品を購入するにはユーザー登録またはログインの実施をよろしくお願いいたします。');
+        }
+      },
     mounuted(){
         $(function(){
             var $origin = $("#carouselPlus.carousel-inner").prop("outerHTML");
@@ -298,5 +308,6 @@ export default {
         });
         
     }
+    
 };
 </script>

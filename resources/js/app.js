@@ -15,10 +15,7 @@
  import OnlineStore from './components/OnlineStore.vue';
  import DescriptionOfItem from './components/DescriptionOfItem.vue';
  import axios from 'axios' //追記
- import VueAxios from 'vue-axios' //追記
- import jQuery from 'jquery'
-
- 
+ import VueAxios from 'vue-axios' //追記 
  
  const routes = [
   {
@@ -53,10 +50,18 @@
   },
   
  ];
+
  
  const router = createRouter({
    history: createWebHistory(),
-   routes
+   routes,
+   scrollBehavior(to) {
+    if (to.hash) {
+      return { el: to.hash };
+    } else {
+      return { top: 0 };
+    }
+  }
  });
  
  export default router;

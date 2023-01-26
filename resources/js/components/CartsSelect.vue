@@ -15,5 +15,5 @@
             cartQuantity:cartQuantity,
             }
         }
-      }                              
+    }                              
 </script>

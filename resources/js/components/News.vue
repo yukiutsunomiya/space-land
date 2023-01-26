@@ -4,7 +4,7 @@
         <h2 class="py-4 text-center fw-bold d-block"> NEWS </h2>
         <div class="row">
           <section class="col-lg-4 col-md-6 mb-4"> 
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>/news1">
+            <a href="news1">
               <img :src="'/img/many_cat1.jpg'" class="news-img d-block w-100">
               <div class="bg-white p-3 news-content"> 
                 <span class="ml-1 d-inline-block">5月19日</span>

@@ -11,27 +11,28 @@
               </li>
             </ul>
 </template>
-<script>
+<!--
+    <script>
   export default{
-    
     data(){
       return{
         products:[], 
         session:this.$route.query.session
       }
     },
-    methods:{
+    mounted:{
         function () {
             jQuery(function ($) {
-    $(".dropdown-toggle").click(function () {
-        var location = $(this).attr('href');
-        window.location.href = location;
-        return false;
-      })
-    })
-  
-    
-  }
-}
+                $(".dropdown-toggle").click(function () {
+                    var location = $(this).attr('href');
+                    window.location.href = location;
+                    return false;
+                })
+            })
+        }
+    }
   }
   </script>
+
+
+-->

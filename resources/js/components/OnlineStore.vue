@@ -36,10 +36,10 @@
           });
       },
       methods:{
-        buttonClicked(){
-          window.alert('商品を購入するにはユーザー登録またはログインの実施をよろしくお願いいたします。');
+          buttonClicked(){
+            window.alert('商品を購入するにはユーザー登録またはログインの実施をよろしくお願いいたします。');
+        }
       }
-    }
     }
   </script>
   <style scoped>

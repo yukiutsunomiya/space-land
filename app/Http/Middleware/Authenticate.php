@@ -15,7 +15,30 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            if($request->is('admin') || $request->is('admin/*')){   //追記
+                return redirect()->guest('/admin/login');           //追記
+            }else{
+                return url('/');
+            }                                                       //追記
+            return url('/');
+            //return route('login');
         }
     }
+
+    protected function unauthenticated($request, array $guards)
+    {
+        throw new AuthenticationException(
+            'Unauthenticated.',
+            $guards,
+            $this->redirectToOriginal($request, $guards)
+        );
+    }
+
+    protected function redirectToOriginal($request, array $guards)
+    {
+        foreach ($guards as $guard) {
+            if ($guard === 'admin') {
+                return route('admin.login');
+            }
+        }
 }
