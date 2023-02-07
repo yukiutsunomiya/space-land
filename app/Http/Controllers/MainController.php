@@ -19,7 +19,7 @@ class MainController extends Controller
     {   
         $param = ['name' => $request -> name ];
         $product = DB::select('select * from products where name = :name', $param);
-        return $product;                     
+        return $product;                
     }
     public function commodity(Request $request)
     {
@@ -187,5 +187,48 @@ class MainController extends Controller
             ];
         $contacts = DB::select('select * from contacts where user_id = :user_id ORDER BY id DESC',$params);
         return view('inquiryList',['contacts' => $contacts]);
+    }
+
+    public function user(Request $request){
+        $param = [
+            'id' =>  auth()->id() 
+        ];
+        $user = DB::select('select * from users where id = :id', $param);
+        return view('user',['user' => $user[0]]);
+    }
+
+    public function userEdit(Request $request){
+        $user = [
+            'id' => $request -> id,
+            'name'=> $request -> name,
+            'furigana'=> $request -> furigana,
+            'telephone'=> $request -> telephone,
+            'email'=> $request -> email,
+            'zipCode'=> $request -> zipCode,
+            'prefectures'=> $request -> prefectures,
+            'address'=> $request -> address,
+            'password'=> $request -> password
+        ];
+        return view('userEdit',$user);
+    }
+
+    public function userUpdate(Request $request){    
+        $params = [
+            'id' => $request -> id,
+            'name'=> $request-> name,
+            'furigana'=> $request-> furigana,
+            'telephone'=> $request-> telephone,
+            'email'=> $request-> email,
+            'zipCode'=> $request-> zipCode,
+            'prefectures'=> $request -> prefectures,
+            'address'=> $request -> address,
+        ];
+            DB::update('update users set name = :name,furigana = :furigana,telephone = :telephone,email = :email,zipCode = :zipCode,prefectures = :prefectures,address = :address where id = :id', $params);
+        
+        $param = [
+            'id' => $request -> id,
+        ];
+        $user = DB::select('select * from users where id = :id', $param);
+        return view('user',['user' => $user[0]]);
     }
 }

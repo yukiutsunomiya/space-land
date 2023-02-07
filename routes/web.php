@@ -39,21 +39,38 @@ Route::get('/contact',  function () {
     return view('contact');
 });
 Route::get('/inquiryList', 'App\Http\Controllers\MainController@inquiryList');
-
+Route::get('/user', 'App\Http\Controllers\MainController@user');
+Route::get('/userEdit', 'App\Http\Controllers\MainController@userEdit');
+Route::get('/userUpdate', 'App\Http\Controllers\MainController@userUpdate');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/welcome', function () {
-    return view('welcome');
+//ここから管理者
+Route::get('/admin/login', function () {
+    return view('admin/Login');
+});
+Route::get('/admin/register', function () {
+    return view('admin/register');
+});
+Route::get('/admin', function () {
+    return view('admin/top');
 });
 
-
-Route::get('/admin/login', 'App\Http\Controllers\admin\LoginController@showLoginForm');
 Route::post('/admin/login', 'App\Http\Controllers\admin\LoginController@login');
-Route::post('admin/logout',  'App\Http\Controllers\admin\LoginController@logout')->name('admin.logout');
-Route::get('/admin/register', 'App\Http\Controllers\admin\registerController@showRegistrationForm')->name('admin.register');
+Route::post('/admin/logout',  'App\Http\Controllers\admin\LoginController@logout')->name('admin.logout');
 Route::post('/admin/register', 'App\Http\Controllers\admin\registerController@register');
 
+Route::get('/admin/users','App\Http\Controllers\AdminController@users');
+Route::get('/admin/user','App\Http\Controllers\AdminController@user')->name('admin.user');
+Route::get('/admin/userEdit','App\Http\Controllers\AdminController@userEdit');
+Route::get('/admin/userUpdate','App\Http\Controllers\AdminController@userUpdate');
+Route::get('/admin/userDelete','App\Http\Controllers\AdminController@userDelete');
+Route::get('/admin/orderHistory','App\Http\Controllers\AdminController@orderHistory');
+Route::get('/admin/inquiryList','App\Http\Controllers\AdminController@inquiryList');
+
+
+//vueのsap用のurl
 Route::get('/{any}', function () {
     return view('top');
 })->where('any', '.*');
+

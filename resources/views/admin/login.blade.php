@@ -1,14 +1,12 @@
-@include('components.header')
+@include('components.adminHeader')
 <main>
-    
-    
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin/login') }}">
+                        <form method="POST" action="">
                             @csrf
 
                             <div class="row mb-3">
@@ -56,7 +54,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
-                                    <a class="btn btn-link" href="{{ url('admin/password/request') }}">     //修正
+                                    <a class="btn btn-link" href="{{ url('admin/password/request') }}">   
                                         パスワードを忘れた方はこちら
                                     </a>
                                 </div>
@@ -66,6 +64,5 @@
                 </div>
             </div>
         </div>
-   
 </main>
 @include('components.footer')

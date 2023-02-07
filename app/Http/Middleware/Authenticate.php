@@ -20,7 +20,7 @@ class Authenticate extends Middleware
             }else{
                 return url('/');
             }                                                       //追記
-            return url('/');
+            //return url('/');
             //return route('login');
         }
     }
@@ -41,4 +41,5 @@ class Authenticate extends Middleware
                 return route('admin.login');
             }
         }
+    }
 }

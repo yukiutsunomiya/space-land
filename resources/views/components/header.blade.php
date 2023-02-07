@@ -30,6 +30,10 @@
           @auth
             <p class="fw-bold">ログインユーザー名：<?php $user = Auth::user(); ?>{{ $user->name }}</p>
           @endauth
+    
+          @auth('admin')
+            <p class="fw-bold">管理者ログインユーザー名：{{ Auth::guard('admin')->user()->name }}</p>
+          @endauth
           <nav class="navbar navbar-expand-md">
             <!-- ハンバーガーメニュー -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,32 +105,31 @@
               @if (Route::has('login'))
                 @auth
                   <ul class="navbar-nav">
-                    <li class="nav-item py-2">
-                      <a class="nav-link fw-bold" href="/carts">CARTS</a>
-                    </li>
-                  </ul>
-                  <ul class="navbar-nav">
-                    <li class="nav-item py-2">
-                      <a class="nav-link fw-bold" href="/purchases">購入履歴</a>
+                    <li class="nav-item dropdown py-2">
+                      <a class="nav-link dropdown-toggle fw-bold" href="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        ユーザー管理情報
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/carts">CARTS</a></li>
+                        <li><a class="dropdown-item" href="/purchases">購入履歴</a></li>
+                        <li><a class="dropdown-item" href="/inquiryList">お問い合わせ履歴</a>
+                        <li><a class="dropdown-item" href="/user">ユーザー情報</a>
+                      </ul>
                     </li>
                   </ul>
                   <ul class="navbar-nav">
                     <li class="nav-item py-2">
                       <a href="{{ route('logout') }}" 
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="nav-link fw-bold">
-                        {{ __('Logout') }}
+                          onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();" class="nav-link fw-bold">
+                          {{ __('Logout') }}
                       </a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                           @csrf
                       </form>
                     </li>
                   </ul>
-                  <ul class="navbar-nav">
-                    <li class="nav-item py-2">
-                      <a class="nav-link fw-bold" href="/inquiryList">お問い合わせ履歴</a>
-                    </li>
-                  </ul>
+                  
                 @else
                   <ul class="navbar-nav">
                     <li class="nav-item py-2">

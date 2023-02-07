@@ -16,10 +16,14 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('furigana')->nullable();
+            $table->string('telephone')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->integer('zipCode')->nullable();
+            $table->string('prefectures')->nullable();
+            $table->string('address')->nullable();
             $table->string('password');
-            $table->integer('admin_level')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

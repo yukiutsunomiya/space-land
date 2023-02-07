@@ -79,12 +79,14 @@
  import CartsSelect from './components/CartsSelect.vue';
  import changeCart from './components/changeCart.vue';
  import headerNav from './components/headerNav.vue';
+ import Password from './components/Password.vue';
  app.component('example-component', ExampleComponent);
  app.component('comodity-select', ComoditySelect);
  app.component('carts-select', CartsSelect);
  app.component('items', Items);
  app.component('change-cart', changeCart);
  app.component('header-nav', headerNav);
+ app.component('password', Password);
 
  /**
   * The following block of code may be used to automatically register your

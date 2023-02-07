@@ -22,6 +22,11 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
+        'furigana',
+        'telephone',
+        'zipCode',
+        'prefectures',
+        'address',
     ];
 
     /**

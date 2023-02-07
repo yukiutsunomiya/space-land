@@ -23,7 +23,7 @@ class User extends Authenticatable
         'password',
         'furigana',
         'telephone',
-        'post-code',
+        'zipCode',
         'prefectures',
         'address',
     ];

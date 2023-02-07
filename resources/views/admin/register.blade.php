@@ -1,4 +1,4 @@
-@include('components.header')
+@include('components.adminHeader')
 
 <div class="container">
     <div class="row justify-content-center">
@@ -7,7 +7,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin/register') }}"> //修正
+                    <form method="POST" action=""> 
                         @csrf
 
                         <div class="row mb-3">
@@ -25,10 +25,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">フリガナ</label>
+                            <label for="furigana" class="col-md-4 col-form-label text-md-end">フリガナ</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('furigana') is-invalid @enderror" name="furigana" value="{{ old('furigana') }}" required autocomplete="name" autofocus placeholder="ヤマダ　タロウ" pattern="(?=.*?[\u30A1-\u30FC])[\u30A1-\u30FC\s]*">
+                                <input id="furigana" type="text" class="form-control @error('furigana') is-invalid @enderror" name="furigana" value="{{ old('furigana') }}" required autocomplete="name" autofocus placeholder="ヤマダ　タロウ" pattern="(?=.*?[\u30A1-\u30FC])[\u30A1-\u30FC\s]*">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -39,10 +39,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">お電話番号</label>
+                            <label for="telephone" class="col-md-4 col-form-label text-md-end">お電話番号</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('tel') is-invalid @enderror" name="tel" value="{{ old('tel') }}" required autocomplete="tel" autofocus placeholder="09012345678">
+                                <input id="telephone" type="tel" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required autocomplete="tel" autofocus placeholder="09012345678">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -68,10 +68,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">郵便番号</label>
+                            <label for="zipCode" class="col-md-4 col-form-label text-md-end">郵便番号</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="number" class="form-control @error('post-code') is-invalid @enderror" name="post-code" value="{{ old('post-code') }}" required autocomplete="name" autofocus placeholder="1234567">
+                                <input id="zipCode" type="number" class="form-control @error('zipCode') is-invalid @enderror" name="zipCode" value="{{ old('zipCode') }}" required autocomplete="name" autofocus placeholder="1234567">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -82,10 +82,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">都道府県</label>
+                            <label for="prefectures" class="col-md-4 col-form-label text-md-end">都道府県</label>
 
                             <div class="col-md-6">
-                                <select name="pref" required class="form-control">
+                                <select name="prefectures" required class="form-control">
                                     <option value="" selected>都道府県</option>
                                     <option value="北海道">北海道</option>
                                     <option value="青森県">青森県</option>
@@ -139,10 +139,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">ご住所</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-end">ご住所</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="name" autofocus placeholder="東京都港区">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="name" autofocus placeholder="東京都港区">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
