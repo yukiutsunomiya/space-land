@@ -39,6 +39,7 @@ Route::get('/contact',  function () {
     return view('contact');
 });
 Route::get('/inquiryList', 'App\Http\Controllers\MainController@inquiryList');
+Route::get('/inquiry', 'App\Http\Controllers\MainController@inquiry');
 Route::get('/user', 'App\Http\Controllers\MainController@user');
 Route::get('/userEdit', 'App\Http\Controllers\MainController@userEdit');
 Route::get('/userUpdate', 'App\Http\Controllers\MainController@userUpdate');
@@ -65,9 +66,15 @@ Route::get('/admin/user','App\Http\Controllers\AdminController@user')->name('adm
 Route::get('/admin/userEdit','App\Http\Controllers\AdminController@userEdit');
 Route::get('/admin/userUpdate','App\Http\Controllers\AdminController@userUpdate');
 Route::get('/admin/userDelete','App\Http\Controllers\AdminController@userDelete');
+Route::get('/admin/userPurchase','App\Http\Controllers\AdminController@userPurchase');
+Route::get('/admin/userCart','App\Http\Controllers\AdminController@userCart');
+Route::get('/admin/userInquiryList','App\Http\Controllers\AdminController@userInquiryList');
+Route::get('/admin/userInquiry','App\Http\Controllers\AdminController@userInquiry');
 Route::get('/admin/orderHistory','App\Http\Controllers\AdminController@orderHistory');
 Route::get('/admin/inquiryList','App\Http\Controllers\AdminController@inquiryList');
-
+Route::get('/admin/shipUpdate','App\Http\Controllers\AdminController@shipUpdate');
+Route::get('/admin/situationUpdate','App\Http\Controllers\AdminController@situationUpdate');
+Route::get('/admin/inquiry','App\Http\Controllers\AdminController@inquiry');
 
 //vueのsap用のurl
 Route::get('/{any}', function () {

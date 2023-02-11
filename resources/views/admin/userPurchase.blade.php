@@ -1,8 +1,8 @@
-@include('components.header')
+@include('components.adminHeader')
 <main>
   <div class="container-fluid text-center">
     <h2 class="pt-1 my-4 fw-bold">
-      <?php $user = Auth::user(); ?>{{ $user->name }}様の購入履歴
+      購入履歴
     </h2>
     <article class="row text-center">
       @foreach($purchases as $purchase)
@@ -12,21 +12,15 @@
           @php
             $purchaseSum = $purchase->price * $purchase->quantity;
           @endphp
-           @php
-            $date = new DateTime($purchase-> created_at);
-            $date->modify('+9 hours');
-            $purchaseTime =$date->format('Y年m月d日 H時')
-          @endphp
           <p class="mt-2">
             値段：{{$purchase->price}}円<br> 
             個数：{{$purchase->quantity}}個<br>
-            合計金額：{{$purchaseSum}}円<br>
-            発送状況：{{$purchaseTime}}
+            合計金額：{{$purchaseSum}}円
+            
           </p>
-        </section>
+          <!--<ship></ship>-->
       @endforeach  
     </article>
-    <?php $user_id = Auth::id(); ?>
   </div>
 </main>
 @include('components.footer')

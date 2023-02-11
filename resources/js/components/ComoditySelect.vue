@@ -5,11 +5,12 @@
                 <dt>個数<span class="must">必須</span></dt>
                 <dd>
                     <select name="quantity" v-model="selectValue" required>
-                    <option value="1">１</option>
-                    <option value="2">２</option>
-                    <option value="3">３</option>
-                    <option value="4">４</option>
-                    <option value="5">５</option>
+                        
+                        <option value="1">１</option>
+                        <option value="2">２</option>
+                        <option value="3">３</option>
+                        <option value="4">４</option>
+                        <option value="5">５</option>
                     </select>
                 </dd>
             </dl>
@@ -18,6 +19,7 @@
             <input type = "text" name="price" :value= "this.$route.query.price" class="d-none">
             <input type = "text" name="img1" :value= "this.$route.query.img1" class="d-none">
             <input type = "text" name="img2" :value= "this.$route.query.img2" class="d-none">
+            <input type = "text" name="ship" value= "未発送" class="d-none">
 
             <p>合計請求額：
                 <template v-if="selectValue === '1'" name="purchasePrice" value = "this.$route.query.price">{{this.$route.query.price}}円</template>

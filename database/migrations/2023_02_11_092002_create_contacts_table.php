@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('content');
             $table->integer('user_id')->nullable();
             $table->integer('contact_id')->nullable();
+            $table->string('admin_situation')->nullable();
+            $table->string('user_situation')->nullable();
             $table->timestamps();
         });
     }

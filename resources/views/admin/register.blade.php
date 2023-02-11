@@ -85,7 +85,7 @@
                             <label for="prefectures" class="col-md-4 col-form-label text-md-end">都道府県</label>
 
                             <div class="col-md-6">
-                                <select name="prefectures" required class="form-control">
+                                <select id="prefectures" name="prefectures" required class="form-control">
                                     <option value="" selected>都道府県</option>
                                     <option value="北海道">北海道</option>
                                     <option value="青森県">青森県</option>

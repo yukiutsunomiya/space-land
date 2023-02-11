@@ -18,7 +18,6 @@
             </form>
             <a type="submit" href="user?id={{$id}}" class="btn btn-primary d-inline-block mt-3 btn-hover w-25">{{$name}}様のユーザー情報へ戻る</a>
         </div>
-        
     </div>
 </main>
 @include('components.footer')

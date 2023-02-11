@@ -19,8 +19,9 @@ class MainController extends Controller
     {   
         $param = ['name' => $request -> name ];
         $product = DB::select('select * from products where name = :name', $param);
-        return $product;                
+        return $product; 
     }
+
     public function commodity(Request $request)
     {
         $data = [
@@ -37,21 +38,35 @@ class MainController extends Controller
     public function confirm(Request $request)
     {
         $user_id = auth()->id();
-        $params= [
-            'product_id' => $request -> product_id ,
-            'name' => $request -> name ,
-            'img1' => $request -> img1 ,
-            'img2' => $request -> img2 ,
-            'price' => $request -> price ,
-            'user_id' => $user_id,
-            'quantity' => $request -> quantity
-            ];
         if($request->has('cart')){
+            $params= [
+                'product_id' => $request -> product_id ,
+                'name' => $request -> name ,
+                'img1' => $request -> img1 ,
+                'img2' => $request -> img2 ,
+                'price' => $request -> price ,
+                'user_id' => $user_id,
+                'quantity' => $request -> quantity,
+            ];
             DB::insert('insert into carts (product_id,name,price,img1,img2,user_id,quantity) values (:product_id,:name,:price,:img1,:img2,:user_id,:quantity)',$params);
             return redirect('/carts');
 
         }elseif($request->has('purchase')){
-            DB::insert('insert into purchases (product_id,name,price,img1,img2,user_id,quantity) values (:product_id,:name,:price,:img1,:img2,:user_id,:quantity)',$params);
+            $params= [
+                'product_id' => $request -> product_id ,
+                'name' => $request -> name ,
+                'img1' => $request -> img1 ,
+                'img2' => $request -> img2 ,
+                'price' => $request -> price ,
+                'user_id' => $user_id,
+                'quantity' => $request -> quantity,
+                'ship' => $request -> ship,
+            ];
+            $param= [
+                'id' => $request -> id 
+            ];
+            DB::insert('insert into purchases (product_id,name,price,img1,img2,user_id,quantity,ship,created_at) values (:product_id,:name,:price,:img1,:img2,:user_id,:quantity,:ship,CURRENT_TIMESTAMP)',$params);
+            DB::delete('delete from carts where id = :id',$param);
             return redirect('/purchases');
         }                     
     }
@@ -60,7 +75,7 @@ class MainController extends Controller
         $params= [
             'user_id' => auth()->id()
             ];
-        $carts = DB::select('select * from carts where user_id = :user_id',$params);
+        $carts = DB::select('select * from carts where user_id = :user_id ORDER BY id DESC;',$params);
         return view('carts',['carts' => $carts]);
     }
 
@@ -68,15 +83,15 @@ class MainController extends Controller
         $params= [
             'user_id' => auth()->id()
             ];
-        $purchases = DB::select('select * from purchases where user_id = :user_id',$params);
+        $purchases = DB::select('select * from purchases where user_id = :user_id ORDER BY id DESC',$params);
         return view('purchases',['purchases' => $purchases]);
      }
 
     public function cartDeleate(Request $request){
-        $params= [
+        $param= [
             'id' => $request -> id
             ];
-        $carts = DB::delete('delete from carts where id = :id',$params);
+        DB::delete('delete from carts where id = :id',$param);
         return redirect('/carts');
     }
 
@@ -121,7 +136,7 @@ class MainController extends Controller
                 'user_id' => $user_id,
                 'quantity' => $request -> quantity
                 ];
-            DB::insert('insert into purchases (product_id,name,price,img1,img2,user_id,quantity) values (:product_id,:name,:price,:img1,:img2,:user_id,:quantity)',$params);
+            DB::insert('insert into purchases (product_id,name,price,img1,img2,user_id,quantity,created_at) values (:product_id,:name,:price,:img1,:img2,:user_id,:quantity,CURRENT_TIMESTAMP)',$params);
             return redirect('/purchases');
         }
     }
@@ -161,9 +176,10 @@ class MainController extends Controller
                 'replyRequest' => $request -> replyRequest ,
                 'subject' => $request -> subject ,
                 'content' => $request -> content ,
-                'user_id' => $user_id
+                'user_id' => $user_id,
+                'admin_situation'  => $request -> admin_situation
                 ];
-            DB::insert('insert into contacts (name,email,replyRequest,subject,content,user_id) values (:name,:email,:replyRequest,:subject,:content,:user_id)',$contact);
+            DB::insert('insert into contacts (name,email,replyRequest,subject,content,user_id,admin_situation) values (:name,:email,:replyRequest,:subject,:content,:user_id,:admin_situation)',$contact);
             // 送信ボタンの場合、送信処理
             // ユーザにメールを送信s
             \Mail::to($request -> email)->send(new sendMail($request -> name,$request -> email));
@@ -182,11 +198,19 @@ class MainController extends Controller
     }
 
     public function inquiryList(Request $request){
-        $params= [
+        $param= [
             'user_id' => auth()->id()
             ];
-        $contacts = DB::select('select * from contacts where user_id = :user_id ORDER BY id DESC',$params);
+        $contacts = DB::select('select * from contacts where user_id = :user_id ORDER BY id DESC',$param);
         return view('inquiryList',['contacts' => $contacts]);
+    }
+    
+    public function inquiry(Request $request){
+        $param= [
+            'id' => $request -> id
+            ];
+        $contact = DB::select('select * from contacts where id = :id',$param);
+        return view('inquiry',['contact' => $contact[0]]);
     }
 
     public function user(Request $request){
@@ -224,11 +248,11 @@ class MainController extends Controller
             'address'=> $request -> address,
         ];
             DB::update('update users set name = :name,furigana = :furigana,telephone = :telephone,email = :email,zipCode = :zipCode,prefectures = :prefectures,address = :address where id = :id', $params);
-        
         $param = [
             'id' => $request -> id,
         ];
         $user = DB::select('select * from users where id = :id', $param);
         return view('user',['user' => $user[0]]);
     }
+
 }
