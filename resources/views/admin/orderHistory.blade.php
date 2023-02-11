@@ -4,13 +4,16 @@
     <h2 class="pt-1 my-4 fw-bold">
       購入履歴
     </h2>
-    <form method="get" action="/admin/situationUpdate">
+    <p>発送状況：{{$ship_situation}}</p>
+    <form method="get" action="/admin/orderHistory">
       <input type="hidden" value="" name="user_name">
       <input type="hidden" value="" name="id">
-      <label for="contactSituation" class="">発送状況：</label>
-      <select id="contactSituation" name="admin_situation" class="ml-2 inline-block">
-        <option value="対応中">全履歴</option>
-        <option value="対応済み"></option>
+      <label for="ship_situation" class="">発送状況変更：</label>
+      <select id="ship_situation" name="ship_situation" class="ml-2 inline-block">
+        <option value="選択してください。" selected hidden>選択してください。</option>
+        <option value="全履歴">全履歴</option>
+        <option value="未発送">未発送</option>
+        <option value="発送済み">発送済み</option>
         <option value="完了">完了</option>
       </select>
       <button type="submit" class="btn btn-primary d-inline-block mt-2 ml-2 btn-hover w-25">対応状況変更</button>
@@ -37,6 +40,7 @@
           </p>
           <form method="get" action="/admin/shipUpdate">
             <input type="hidden" value="" name="orderHistory">
+            <input type="hidden" value="{{$ship_situation}}" name="ship_situation">
             <input type="hidden" value="{{$purchase->user_id}}" name="user_id">
             <input type="hidden" value="{{$purchase->id}}" name="purchase_id">
             <label for="ship" class="">発送状況変更：</label>

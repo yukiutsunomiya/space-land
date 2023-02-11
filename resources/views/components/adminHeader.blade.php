@@ -45,7 +45,7 @@
                   </ul>
                   <ul class="navbar-nav">
                     <li class="nav-item py-2">
-                      <a class="nav-link fw-bold" href="../admin/orderHistory">注文履歴</a>
+                      <a class="nav-link fw-bold" href="../admin/orderHistory?ship_situation=全履歴">注文履歴</a>
                     </li>
                   </ul>
                   <ul class="navbar-nav">
