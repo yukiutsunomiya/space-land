@@ -1,6 +1,8 @@
 @include('components.adminHeader')
 <main>
+
   <div class="container-fluid text-center">
+  <a href="../admin/user?id={{$user_id}}" class="btn btn-primary btn-hover d-inline-block mx-2 mt-4 w-50">{{$user_name}}様のユーザー情報へ</a>
     <h2 class="pt-1 my-4 fw-bold">
       {{ $user_name }}様のカート
     </h2>
@@ -31,7 +33,7 @@
     <!--
     <a href="cartDeleates?user_id={{$user_id}}" onclick="return confirm('すべてのカートの削除します。よろしいですか？')" class="btn btn-primary btn-hover d-inline-block mx-2 mb-4" name="purchase">すべてカート取り消し</a>
     -->
-    <a href="../admin/user?id={{$user_id}}" class="btn btn-primary btn-hover d-inline-block mx-2 mb-4">{{$user_name}}様のユーザー情報へ</a>
+    
   </div>
 
       

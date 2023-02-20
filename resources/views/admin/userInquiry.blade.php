@@ -14,7 +14,7 @@
                     <input type="hidden" value="{{$contact->id}}" name="id">
                     <label for="contactSituation" class="">対応状況：</label>
                     <select id="contactSituation" name="admin_situation" class=" inline-block">
-                        <option value="選択してください。" selected hidden>選択してください。</option>
+                        <option value="選択してください。" selected disabled>選択してください。</option>
                         <option value="対応中">対応中</option>
                         <option value="対応済み">対応済み</option>
                         <option value="完了">完了</option>

@@ -1,6 +1,6 @@
 @include('components.adminHeader')
 <main>
-    <div class="container my-5">
+    <div class="container my-5 text-center">
         <h3 class="mb-4">{{$name}}様のユーザー情報</h3>
         <div>
             <form method="get" action="/admin/userUpdate">

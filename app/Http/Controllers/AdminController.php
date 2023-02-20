@@ -88,7 +88,7 @@ class AdminController extends Controller
             'user_id' =>  $request -> id
             ];
         $contacts = DB::select('select * from contacts where user_id = :user_id ORDER BY id DESC',$param);
-        return view('admin.userInquiryList',['contacts' => $contacts,'user_name' =>  $request -> name]);
+        return view('admin.userInquiryList',['contacts' => $contacts,'id' =>  $request -> id,'user_name' =>  $request -> name]);
     }
 
     public function userInquiry(Request $request){
@@ -126,19 +126,14 @@ class AdminController extends Controller
 
     public function shipUpdate(Request $request){
         $params = [
-            'id' => $request -> purchase_id,
+            'id' => $request -> id,
             'ship' => $request -> ship
         ];
         DB::update('update purchases set ship = :ship where id = :id', $params);
-        $param = [
-            'id' => $request -> user_id,
-        ];
-        $user = DB::select('select * from users where id = :id', $param);
-        $purchases = DB::select('select * from purchases where user_id = :id ORDER BY id DESC',$param);
         if($request->has('orderHistory')){
             $param= [
                 'ship' =>  $request -> ship_situation
-                ];
+            ];
             if($request -> ship_situation === '全履歴'){
                 $purchases = DB::select('select * from purchases ORDER BY id DESC');
             }else{
@@ -146,9 +141,13 @@ class AdminController extends Controller
             }
             return view('admin.orderHistory',['purchases' => $purchases,'ship_situation' => $request -> ship_situation]);
         }elseif($request->has('user')){
-            return view('admin.user',['user' => $user[0],'purchases' => $purchases]);
+            $params= [
+                'id' =>  $request -> user_id,
+                'ship' =>  $request -> ship_situation
+            ];
+            $purchases = DB::select('select * from purchases where user_id = :id and ship = :ship ORDER BY id DESC',$params);
+            return view('admin.userOrderHistory',['purchases' => $purchases,'user_id' => $request -> user_id,'user_name' =>  $request -> user_name,'ship_situation' => $request -> ship_situation]);
         }
-        
     }
 
     public function situationUpdate(Request $request){
@@ -169,5 +168,18 @@ class AdminController extends Controller
         }
     }
 
-    
+    public function userOrderHistory(Request $request){
+        if($request -> ship_situation === '全履歴'){
+            $param = ['user_id' => $request -> user_id ];
+            $purchases = DB::select('select * from purchases where user_id = :user_id ORDER BY id DESC',$param);
+        }else{
+            $params= [
+                'user_id' => $request -> user_id ,
+                'ship' =>  $request -> ship_situation
+            ];
+            $purchases = DB::select('select * from purchases where user_id = :user_id and ship = :ship ORDER BY id DESC',$params);
+        }    
+        return view('admin.userOrderHistory',['purchases' => $purchases,'user_id' => $request -> user_id,'user_name' =>  $request -> user_name,'ship_situation' => $request -> ship_situation]);
+    }
+
 }

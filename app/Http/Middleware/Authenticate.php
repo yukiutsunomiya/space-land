@@ -16,7 +16,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             if($request->is('admin') || $request->is('admin/*')){   //追記
-                return redirect()->guest('/admin/login');           //追記
+                return url('/admin/login');           //追記
             }else{
                 return url('/');
             }                                                       //追記
@@ -25,6 +25,7 @@ class Authenticate extends Middleware
         }
     }
 
+    /*
     protected function unauthenticated($request, array $guards)
     {
         throw new AuthenticationException(
@@ -42,4 +43,5 @@ class Authenticate extends Middleware
             }
         }
     }
+    */
 }

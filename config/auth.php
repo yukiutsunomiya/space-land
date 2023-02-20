@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins', // providerに追加した名前
         ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -72,10 +76,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class, //make:modelしたクラス名
         ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        /*
+         'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
+        */
     ],
 
     /*
