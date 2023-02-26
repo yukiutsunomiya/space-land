@@ -15,13 +15,13 @@
            @php
             $date = new DateTime($purchase-> created_at);
             $date->modify('+9 hours');
-            $purchaseTime =$date->format('Y年m月d日 H時')
+            $purchaseTime =$date->format('Y年m月d日 H時');
           @endphp
           <p class="mt-2">
             値段：{{$purchase->price}}円<br> 
             個数：{{$purchase->quantity}}個<br>
             合計金額：{{$purchaseSum}}円<br>
-            発送状況：{{$purchaseTime}}
+            購入日時：{{$purchaseTime}}
           </p>
         </section>
       @endforeach  

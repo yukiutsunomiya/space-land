@@ -7,7 +7,6 @@
                     <select name="quantity" v-model="selectValue" required>
                         <option value="選択してください。" selected hidden>選択してください。</option>
                         <option value="1">１</option>
-                        <option value="1">１</option>
                         <option value="2">２</option>
                         <option value="3">３</option>
                         <option value="4">４</option>

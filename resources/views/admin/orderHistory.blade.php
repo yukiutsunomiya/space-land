@@ -1,6 +1,6 @@
 @include('components.adminHeader')
 <main>
-  <div class="container-fluid text-center">
+  <div class="container-fluid text-center mb-4">
     <h2 class="pt-1 my-4 fw-bold">
       購入履歴
     </h2>

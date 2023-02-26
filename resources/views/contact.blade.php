@@ -12,19 +12,40 @@
             @endauth
                 <form action = "/contactconfirm" method="get">
                     @auth
-                        <input placeholder="お名前" class="d-inline-block mb-3 w-25" name = "name" value="{{$user->name}}" required><br>
-                        <input placeholder="メールアドレス" class="d-inline-block mb-3 w-25" name = "email" value="{{$user->email}}" required><br>
+                        @if(isset($name))
+                            <input placeholder="お名前" class="d-inline-block mb-3 w-25" name = "name" value="{{$name}}" required><br>
+                            <input placeholder="メールアドレス" class="d-inline-block mb-3 w-25" name = "email" value="{{$email}}" required><br>
+                        @else
+                            <input placeholder="お名前" class="d-inline-block mb-3 w-25" name = "name" value="{{$user->name}}" required><br>
+                            <input placeholder="メールアドレス" class="d-inline-block mb-3 w-25" name = "email" value="{{$user->email}}" required><br>
+                        @endif
                         <label for="replyRequestOk"><input id="replyRequestOk" type="radio" name="replyRequest" value="返信を希望" required>返信を希望　</label>
 	                    <label for="replyRequestNo"><input id="replyRequestNo" type="radio" name="replyRequest" value="返信を希望しない">返信を希望しない </label><br>
-                        <input placeholder="件名" class="d-inline-block mb-3 w-25" name = "subject" value="" required><br>
-                        <textarea placeholder="メッセージを入力してください。" class="d-inline-block mb-4 w-25" name = "content" value="" required></textarea>
+                        @if(isset($subject))
+                            <input placeholder="件名" class="d-inline-block mb-3 w-25" name = "subject" value="{{$subject}}" required><br>
+                            <textarea placeholder="メッセージを入力してください。" class="d-inline-block mb-4 w-25" name = "content" value="{{$content}}" required></textarea>
+                        @else
+                            <input placeholder="件名" class="d-inline-block mb-3 w-25" name = "subject" value="" required><br>
+                            <textarea placeholder="メッセージを入力してください。" class="d-inline-block mb-4 w-25" name = "content" value="" required></textarea>
+                        @endif
+                        
                     @else
-                        <input placeholder="お名前" class="d-inline-block mb-3 w-25" name = "name" value="" required><br>
-                        <input placeholder="メールアドレス" class="d-inline-block mb-3 w-25" name = "email" value="" required><br>
+                        @if(isset($name))
+                            <input placeholder="お名前" class="d-inline-block mb-3 w-25" name = "name" value="{{$name}}" required><br>
+                            <input placeholder="メールアドレス" class="d-inline-block mb-3 w-25" name = "email" value="{{$email}}" required><br>
+                        @else
+                            <input placeholder="お名前" class="d-inline-block mb-3 w-25" name = "name" value="" required><br>
+                            <input placeholder="メールアドレス" class="d-inline-block mb-3 w-25" name = "email" value="" required><br>
+                        @endif
                         <label for="replyRequestOk"><input id="replyRequestOk" type="radio" name="replyRequest" value="返信を希望" required>返信を希望　</label>
 	                    <label for="replyRequestNo"><input id="replyRequestNo" type="radio" name="replyRequest" value="返信を希望しない">返信を希望しない </label><br>
-                        <input placeholder="件名" class="d-inline-block mb-3 w-25" name = "subject" value="" required><br>
-                        <textarea placeholder="メッセージを入力してください。" class="d-inline-block mb-4 w-25" name = "content" value="" required></textarea>
+                        @if(isset($subject))
+                            <input placeholder="件名" class="d-inline-block mb-3 w-25" name = "subject" value="{{$subject}}" required><br>
+                            <textarea placeholder="メッセージを入力してください。" class="d-inline-block mb-4 w-25" name = "content" value="{{$content}}" required></textarea>
+                        @else
+                            <input placeholder="件名" class="d-inline-block mb-3 w-25" name = "subject" value="" required><br>
+                            <textarea placeholder="メッセージを入力してください。" class="d-inline-block mb-4 w-25" name = "content" value="" required></textarea>
+                        @endif
                     @endauth
                         <br>
                         <button type="submit" class="btn btn-primary d-inline-block mb-5 btn-hover w-25">送信する</button>

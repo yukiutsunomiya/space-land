@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Image;
 
 class AdminController extends Controller
 {
@@ -180,6 +181,71 @@ class AdminController extends Controller
             $purchases = DB::select('select * from purchases where user_id = :user_id and ship = :ship ORDER BY id DESC',$params);
         }    
         return view('admin.userOrderHistory',['purchases' => $purchases,'user_id' => $request -> user_id,'user_name' =>  $request -> user_name,'ship_situation' => $request -> ship_situation]);
+    }
+
+    public function productRegistrationConfirmation(Request $request){
+        // ディレクトリ名
+        $dir = 'img';
+        $img1 = '';
+        $img2 = '';
+        if($request->has('$img1')){
+            // アップロードされたファイル名を取得
+            $file_name = $request->file('img1')->getClientOriginalName();
+            // imgディレクトリに画像を保存
+            $request->file('img1')->store('public/' . $dir);
+            // ファイル情報をDBに保存
+            $image = new Image();
+            $image->name = $file_name;
+            $image->path = 'storage/' . $dir . '/' . $file_name;
+            $image->save();
+        }
+        if($request->has('$img2')){
+            // アップロードされたファイル名を取得
+            $file_name = $request->file('img2')->getClientOriginalName();
+            // imgディレクトリに画像を保存
+            $request->file('img2')->store('public/' . $dir);
+            // ファイル情報をDBに保存
+            $image = new Image();
+            $image->name = $file_name;
+            $image->path = 'storage/' . $dir . '/' . $file_name;
+            $image->save();
+        }
+        
+        $products = [
+            'name'=> $request-> name,
+            'price'=> $request-> price,
+            'img1'=> $request-> img1,
+            'img2'=> $request-> img2,
+            'description'=> $request-> description,
+            'releaseYear'=> $request-> releaseYear,
+            'releaseMonth'=> $request -> releaseMonth,
+            'releaseDate'=> $request -> releaseDate,
+            'situation'=> $request -> releaseDate,
+        ];
+        DB::insert('insert into products (name,price,img1,img2,description,releaseYear,releaseMonth,releaseDate,situation,created_at) values (:name,:price,:img1,:img2,:description,:releaseYear,:releaseMonth,:releaseDate,:situation,CURRENT_TIMESTAMP)',$products);
+        return view('admin.productRegistrationConfirmation',$products);
+    }
+
+    public function products(Request $request){
+        $products = DB::select('select * from products');
+        return view('admin.products',['products' => $products]);
+    }
+
+    public function product(Request $request){
+        $product = [
+            'id'=> $request-> id,
+            'name'=> $request-> name,
+            'price'=> $request-> price,
+            'img1'=> $request-> img1,
+            'img2'=> $request-> img2,
+            'description'=> $request-> description,
+            'releaseYear'=> $request-> releaseYear,
+            'releaseMonth'=> $request -> releaseMonth,
+            'releaseDate'=> $request -> releaseDate,
+            'order'=> $request -> order,
+            'situation'=> $request -> releaseDate,
+        ];
+        return view('admin.product',$product);
     }
 
 }

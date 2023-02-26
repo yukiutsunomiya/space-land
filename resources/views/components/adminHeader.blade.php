@@ -54,6 +54,18 @@
                     </li>
                   </ul>
                   <ul class="navbar-nav">
+                    <li class="nav-item dropdown py-2">
+                      <a class="nav-link dropdown-toggle fw-bold" href="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        商品関連
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="../admin/productRegistration">商品登録</a></li>
+                        <li><a class="dropdown-item" href="../admin/products">商品情報一覧</a></li>
+                        <li><a class="dropdown-item" href="../admin/productOrderChange">商品順番変更</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav">
                     <li class="nav-item py-2">
                       <a href="{{ route('logout') }}" 
                           onclick="event.preventDefault();

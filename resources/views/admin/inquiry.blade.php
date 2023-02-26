@@ -5,8 +5,14 @@
         <h2 class="mt-3">問い合わせ内容</h2>
             <section class="border py-3">
                 <p class="px-2">返信希望：{{$contact -> replyRequest}}</p>
-                <p class="px-2">件名：{{$contact -> subject}}</p>
+                @php
+                  $date = new DateTime($contact-> created_at);
+                  $date->modify('+9 hours');
+                  $contactTime =$date->format('Y年m月d日 H時');
+                @endphp
+                <p class="px-2">問い合わせ日時：{{$contactTime}}</p>
                 <p class="px-2">メールアドレス：{{$contact -> email}}</p>
+                <p class="px-2">件名：{{$contact -> subject}}</p>
                 <p class="px-2">内容：<br>{{$contact -> content}}</p>
                 <p class="px-2">対応状況：<br>{{$contact -> admin_situation}}</p>
                 <form method="get" action="/admin/situationUpdate">
