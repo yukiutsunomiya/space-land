@@ -15,7 +15,11 @@
                 <h4 class="text-center">{{product.name}}</h4>
                 <p class="text-center">
                 <br><br>
+<<<<<<< HEAD
                 価格：{{product.price}}円
+=======
+                {{product.price}}円
+>>>>>>> a33e559cb848b0afa4fdd2149c3a9f1657a550de
                 </p>
                 <div class="text-center pt-2">
                   <router-link :to="`/item?name=${product.name}&img1=${product.img1}&price=${product.price}`"  class="btn btn-primary btn-hover d-inline-block mr-l bttoon-right">もっと見る</router-link>

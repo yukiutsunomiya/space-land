@@ -59,12 +59,16 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
+<<<<<<< HEAD
         },
         "platform": {
             "win32": 
                 "zip"
             }
         
+=======
+        }
+>>>>>>> a33e559cb848b0afa4fdd2149c3a9f1657a550de
     },
     "minimum-stability": "dev",
     "prefer-stable": true
