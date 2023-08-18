@@ -273,7 +273,7 @@ class MainController extends Controller
                 DB::insert('insert into contacts (name,email,replyRequest,subject,content,admin_situation,created_at) values (:name,:email,:replyRequest,:subject,:content,:admin_situation,CURRENT_TIMESTAMP)',$contact);             
             }
             
-            
+            /*
             // 送信ボタンの場合、送信処理
             // ユーザにメールを送信
             \Mail::to($request -> email)->send(new sendMail($request -> name,$request -> email));
@@ -282,8 +282,7 @@ class MainController extends Controller
             // 二重送信対策のためトークンを再発行
             $request->session()->regenerateToken();
             // 送信完了ページのviewを表示
-
-
+            */
 
             //LINEメッセージ内容
             $user_name = $request->name;
