@@ -1,0 +1,41 @@
+@include('components.adminHeader')
+<main>
+
+  <div class="container-fluid text-center">
+  <a href="../admin/user?id={{$user_id}}" class="btn btn-primary btn-hover d-inline-block mx-2 mt-4 w-50">{{$user_name}}様のユーザー情報へ</a>
+    <h2 class="pt-1 my-4 fw-bold">
+      {{ $user_name }}様のカート
+    </h2>
+    <article class="row text-center">
+      @foreach($carts as $cart)
+        <section class="col-lg-4 col-md-6 border mb-4">
+          <p class="mt-3">商品名：{{$cart->name}}</p>
+          <img src="/img/{{$cart->img1}}" class="d-block mx-auto img-fluid">
+          @php
+            $cartSum = $cart->price * $cart->quantity;
+          @endphp
+          <p class="mt-2">
+            値段：{{$cart->price}}円<br>
+            個数：{{$cart->quantity}}個<br>
+            合計金額：{{$cartSum}}円
+          </p>
+          <!--
+            <carts-select v-bind:cartQuantity='{{$cart->quantity}}'></carts-select> 
+          
+          <a href="cartDeleate?id={{$cart-> id}}" onclick="return confirm('カートの削除はよろしいですか？')" class="btn btn-primary btn-hover d-inline-block mx-2 my-2">取り消し</a>
+          <a href="changeCart?id={{$cart-> id}}&product_id={{$cart-> product_id}}&name={{$cart-> name}}&price={{$cart-> price}}&img1={{$cart-> img1}}&img2={{$cart-> img2}}&quantity={{$cart-> quantity}}" class="btn btn-primary btn-hover d-inline-block mx-2 my-2">個数を変更する</a>
+          <a href="confirm?id={{$cart-> id}}&product_id={{$cart-> product_id}}&name={{$cart-> name}}&price={{$cart-> price}}&img1={{$cart-> img1}}&img2={{$cart-> img2}}&quantity={{$cart-> quantity}}&ship=未発送&purchase=" name="purchase" onclick="return confirm('商品の購入でよろしいでしょうか？')" class="btn btn-primary btn-hover d-inline-block mx-2 my-2">購入する</a>
+          -->
+        </section> 
+      @endforeach  
+      
+    </article>
+    <!--
+    <a href="cartDeleates?user_id={{$user_id}}" onclick="return confirm('すべてのカートの削除します。よろしいですか？')" class="btn btn-primary btn-hover d-inline-block mx-2 mb-4" name="purchase">すべてカート取り消し</a>
+    -->
+    
+  </div>
+
+      
+</main>
+@include('components.footer')
