@@ -274,10 +274,6 @@ class MainController extends Controller
             }
             
             
-<<<<<<< HEAD
-            /*
-=======
->>>>>>> a33e559cb848b0afa4fdd2149c3a9f1657a550de
             // 送信ボタンの場合、送信処理
             // ユーザにメールを送信
             \Mail::to($request -> email)->send(new sendMail($request -> name,$request -> email));
@@ -286,10 +282,7 @@ class MainController extends Controller
             // 二重送信対策のためトークンを再発行
             $request->session()->regenerateToken();
             // 送信完了ページのviewを表示
-<<<<<<< HEAD
-            */
-=======
->>>>>>> a33e559cb848b0afa4fdd2149c3a9f1657a550de
+
 
 
             //LINEメッセージ内容

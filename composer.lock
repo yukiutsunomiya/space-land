@@ -8,7 +8,7 @@
     "packages": [
         {
             "name": "brick/math",
-<<<<<<< HEAD
+
             "version": "0.11.0",
             "source": {
                 "type": "git",
@@ -23,7 +23,7 @@
             },
             "require": {
                 "php": "^8.0"
-=======
+
             "version": "0.10.1",
             "source": {
                 "type": "git",
@@ -39,16 +39,15 @@
             "require": {
                 "ext-json": "*",
                 "php": "^7.4 || ^8.0"
->>>>>>> a33e559cb848b0afa4fdd2149c3a9f1657a550de
+
             },
             "require-dev": {
                 "php-coveralls/php-coveralls": "^2.2",
                 "phpunit/phpunit": "^9.0",
-<<<<<<< HEAD
                 "vimeo/psalm": "5.0.0"
-=======
+
                 "vimeo/psalm": "4.25.0"
->>>>>>> a33e559cb848b0afa4fdd2149c3a9f1657a550de
+
             },
             "type": "library",
             "autoload": {
@@ -73,11 +72,11 @@
             ],
             "support": {
                 "issues": "https://github.com/brick/math/issues",
-<<<<<<< HEAD
+
                 "source": "https://github.com/brick/math/tree/0.11.0"
-=======
+
                 "source": "https://github.com/brick/math/tree/0.10.1"
->>>>>>> a33e559cb848b0afa4fdd2149c3a9f1657a550de
+
             },
             "funding": [
                 {
