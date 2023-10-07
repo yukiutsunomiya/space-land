@@ -12,8 +12,15 @@
           価格：{{this.$route.query.price}}円<br>
           音楽を食べる生き物、宇宙ハムスターの「ブルーハムハム」と、手づくりのやわらかフィギュア「もにまるず」のコラボが登場！
         </p>
+
         <div class="text-center pt-3 py-4">
-          <button type="button" onclick="location.href='../items'" class="btn btn-primary btn-hover">一覧に戻る</button> 
+          <template v-if="session === 'user'">
+            <button type="button" onclick="location.href='../items?session=user'" class="btn btn-primary btn-hover">一覧に戻る</button> 
+          </template>
+          
+          <template v-else>
+            <button type="button" onclick="location.href='../items'" class="btn btn-primary btn-hover">一覧に戻る</button> 
+          </template>
         </div>  
     </div> 
   </article>
@@ -23,8 +30,8 @@
     data(){
       return{
         product:[],
-        itemName : this.$route.query.name
-        
+        itemName : this.$route.query.name,
+        session : this.$route.query.session
       }
     },
     created(){

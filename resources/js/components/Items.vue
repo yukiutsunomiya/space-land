@@ -18,7 +18,12 @@
                 価格：{{product.price}}円
                 </p>
                 <div class="text-center pt-2">
-                  <router-link :to="`/item?name=${product.name}&img1=${product.img1}&price=${product.price}`"  class="btn btn-primary btn-hover d-inline-block mr-l bttoon-right">もっと見る</router-link>
+                  <template v-if="session === 'user'">
+                    <router-link :to="`/item?session=user&name=${product.name}&img1=${product.img1}&price=${product.price}`"  class="btn btn-primary btn-hover d-inline-block mr-l bttoon-right">もっと見る</router-link>
+                  </template>
+                  <template v-else>
+                    <router-link :to="`/item?name=${product.name}&img1=${product.img1}&price=${product.price}`"  class="btn btn-primary btn-hover d-inline-block mr-l bttoon-right">もっと見る</router-link>
+                  </template>
                   <template v-if="session === 'user'">
                     <a :href ="`/commodity?id=${product.id}&name=${product.name}&price=${product.price}&img1=${product.img1}&img2=${product.img2}`" class="btn btn-primary btn-hover d-inline-block">購入する</a>
                   </template>
