@@ -20,13 +20,14 @@ class AdminService
     
     public function orderHistory(Request $request){
         $adminRepository = app() -> make("\App\Repositories\AdminRepository");
-        if($request -> ship_situation === '全履歴'){
+        if($request -> ship_situation === '選択してください。'){
+            return back()->withInput();
+        }elseif($request -> ship_situation === '全履歴'){
             $purchases = $adminRepository -> purchasesSelect();
-            
         }else{
             $purchases = $adminRepository -> purchaseSelect($request);
         }
-        return $purchases;
+        return view('admin.orderHistory',['purchases' => $purchases,'ship_situation' => $request -> ship_situation]);
     }
 
     public function shipUpdate(Request $request){

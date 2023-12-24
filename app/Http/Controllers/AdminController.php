@@ -36,7 +36,7 @@ class AdminController extends Controller
     }
 
     public function userUpdate(Request $request,AdminService $adminService){
-        $user =$adminService -> userUpdate($request);
+        $user = $adminService -> userUpdate($request);
         return view('admin.user',['user' => $user[0]]);
     }
 
@@ -61,8 +61,8 @@ class AdminController extends Controller
     }
     
     public function orderHistory(Request $request,AdminService $adminService){
-        $purchases = $adminService -> orderHistory($request);
-        return view('admin.orderHistory',['purchases' => $purchases,'ship_situation' => $request -> ship_situation]);
+        $redirect = $adminService -> orderHistory($request);
+        return $redirect;
     }
 
     public function inquiryList(Request $request,AdminRepository $adminRepository){
