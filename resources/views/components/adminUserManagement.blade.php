@@ -12,7 +12,7 @@
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item py-2">
-                <a class="nav-link fw-bold" href="../admin/userOrderHistory?user_id={{$user->id}}&user_name={{$user-> name}}&ship_situation=全履歴">購入履歴</a>
+                <a class="nav-link fw-bold" href="../admin/userOrderHistory?user_id={{$user->id}}&user_name={{$user-> name}}&ship=全履歴">購入履歴</a>
             </li>
         </ul>
         <ul class="navbar-nav">

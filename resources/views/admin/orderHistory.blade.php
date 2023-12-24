@@ -10,10 +10,7 @@
       <input type="hidden" value="" name="id">
       <label for="ship_situation" class="">発送状況変更：</label>
       <select id="ship_situation" name="ship_situation" class="ml-2 inline-block">
-        <option hidden>選択してください。</option>
-
-        <option value="選択してください。" selected disabledn>選択してください。</option>
-
+        <option value="選択してください。" selected hidden>選択してください。</option>
         <option value="全履歴">全履歴</option>
         <option value="未発送">未発送</option>
         <option value="発送済み">発送済み</option>
@@ -48,11 +45,7 @@
             <input type="hidden" value="{{$purchase->id}}" name="id">
             <label for="ship" class="">発送状況変更：</label>
             <select id="ship" name="ship" class="mr-1 inline-block">
-
-                <option hidden>選択してください。</option>
-
-                <option value="選択してください。" selected disabled>選択してください。</option>
-
+                <option value="選択してください。" selected hidden>選択してください。</option>
                 <option value="未発送">未発送</option>
                 <option value="発送済み">発送済み</option>
                 <option value="完了">完了</option>

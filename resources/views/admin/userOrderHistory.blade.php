@@ -9,9 +9,9 @@
         <form method="get" action="/admin/userOrderHistory">
             <input type="hidden" value="{{$user_name}}" name="user_name">
             <input type="hidden" value="{{$user_id}}" name="user_id">
-            <label for="ship_situation" class="">発送状況変更：</label>
-            <select id="ship_situation" name="ship_situation" class="ml-2 inline-block">
-                <option value="選択してください。" selected disabled>選択してください。</option>
+            <label for="ship_situation" class="">発送状況変更：</label> 
+            <select id="ship_situation" name="ship" class="ml-2 inline-block">
+                <option value="選択してください。" selected hidden>選択してください。</option>
                 <option value="全履歴">全履歴</option>
                 <option value="未発送">未発送</option>
                 <option value="発送済み">発送済み</option>
