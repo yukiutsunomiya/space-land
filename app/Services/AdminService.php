@@ -14,8 +14,6 @@ class AdminService
         }else{
             $adminRepository -> userUpdate($request);
         }
-        $user = $adminRepository -> user($request);
-        return $user;
     }
     
     public function orderHistory(Request $request){
@@ -27,12 +25,14 @@ class AdminService
         }else{
             $purchases = $adminRepository -> purchaseSelect($request);
         }
-        return view('admin.orderHistory',['purchases' => $purchases,'ship_situation' => $request -> ship_situation]);
+        return $purchases;
     }
 
     public function shipUpdate(Request $request){
         $adminRepository = app() -> make("\App\Repositories\AdminRepository");
         $adminRepository -> purchaseUpdate($request);
+        
+        /*
         if($request -> ship === '選択してください。'){
             return back()->withInput();
         }elseif($request->has('orderHistory')){
@@ -46,17 +46,20 @@ class AdminService
             $purchases = $adminRepository -> purchaseForEachUserAndShip($request);
             return view('admin.userOrderHistory',['purchases' => $purchases,'user_id' => $request -> user_id,'user_name' =>  $request -> user_name,'ship_situation' => $request -> ship]);
         }
+        */
     }
 
     public function situationUpdate(Request $request){
         $adminRepository = app() -> make("\App\Repositories\AdminRepository");
         $adminRepository -> contactUpdate($request);
+        /*
         $contact = $adminRepository -> contactSelect($request);
         if($request->has('user_name')){
             return view('admin.userInquiry',['contact' => $contact[0],'user_name' =>  $request -> user_name]);
         }else{
             return view('admin.inquiry',['contact' => $contact[0]]);
         }
+            */
     }
 
     public function userOrderHistory(Request $request){
@@ -68,7 +71,7 @@ class AdminService
         }else{
             $purchases = $adminRepository -> purchaseForEachUserAndShip($request);
         }    
-        return view('admin.userOrderHistory',['purchases' => $purchases,'user_id' => $request -> user_id,'user_name' =>  $request -> user_name,'ship_situation' => $request -> ship]);
+        return $purchases;
     }
 
     public function productRegistrationConfirmation(Request $request){

@@ -112,8 +112,8 @@
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="/carts">CARTS</a></li>
                         <li><a class="dropdown-item" href="/purchases">購入履歴</a></li>
-                        <li><a class="dropdown-item" href="/inquiryList">お問い合わせ履歴</a>
-                        <li><a class="dropdown-item" href="/user">ユーザー情報</a>
+                        <li><a class="dropdown-item" href="/inquiryList">お問い合わせ履歴</a></li>
+                        <li><a class="dropdown-item" href="/user">ユーザー情報</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -170,6 +170,5 @@
                     @endauth
                 </div>
             @endif
-        <--
-        <!-- / ナビゲーション -->
+        <-- / ナビゲーション -->
       </header>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::resource('/chat', ChatController::class);
 
@@ -27,8 +28,8 @@ Route::get('/purchases', 'App\Http\Controllers\MainController@purchases');
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/confirm', 'App\Http\Controllers\MainController@confirm');
     Route::get('/carts', 'App\Http\Controllers\MainController@carts');
-    Route::get('/cartDeleate', 'App\Http\Controllers\MainController@cartDeleate');
-    Route::get('/cartDeleates', 'App\Http\Controllers\MainController@cartDeleates');
+    Route::get('/cartDelete', 'App\Http\Controllers\MainController@cartDelete');
+    Route::get('/cartDeletes', 'App\Http\Controllers\MainController@cartDeletes');
     Route::get('/changeCart', 'App\Http\Controllers\MainController@changeCart');
     Route::get('/updateCart', 'App\Http\Controllers\MainController@updateCart');
     Route::get('/sendContact', 'App\Http\Controllers\MainController@sendContact');
@@ -55,16 +56,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/admin/login', function () {
     return view('admin/Login');
 });
-Route::get('/admin/register', function () {
-    return view('admin/register');
-});
+//Route::get('/admin/register', function () {
+//    return view('admin/register');
+// });
 Route::get('/admin', function () {
     return view('admin/top');
 });
 
 Route::post('/admin/login', 'App\Http\Controllers\admin\LoginController@login');
 Route::post('/admin/logout',  'App\Http\Controllers\admin\LoginController@logout')->name('admin.logout');
-Route::post('/admin/register', 'App\Http\Controllers\admin\registerController@register');
+// /Route::post('/admin/register', 'App\Http\Controllers\admin\registerController@register');
 
 Route::group(['middleware' => ['auth:admin']], function() {
     Route::get('/admin/users','App\Http\Controllers\AdminController@users');

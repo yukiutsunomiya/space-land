@@ -27,35 +27,32 @@ class MainController extends Controller
             'price' => $request -> price ,
             'img1' => $request -> img1 ,
             'img2' => $request -> img2 ,
-     
-            ];
+        ];
         return view('commodity',$data);
     }
 
     public function confirm(Request $request,MainService $mainService)
     { 
-        $redirect = $mainService -> confirm($request,$mainService);
-        return $redirect;
+        $mainService -> confirm($request,$mainService);
+
     }
 
-    public function carts(Request $request,MainRepository $mainRepository){
+    public function carts(MainRepository $mainRepository){
         $carts = $mainRepository -> cartSelect();
-        return view('carts',['carts' => $carts]);
+        return $carts;
     }
 
-    public function purchases(Request $request,MainRepository $mainRepository){
+    public function purchases(MainRepository $mainRepository){
         $purchases = $mainRepository -> purchases();
-        return view('purchases',['purchases' => $purchases]);
+        return $purchases;
      }
 
-    public function cartDeleate(Request $request,MainRepository $mainRepository){
-        $mainRepository -> cartDeleate($request);
-        return redirect('/carts');
+    public function cartDelete(Request $request,MainRepository $mainRepository){
+        $mainRepository -> cartDelete($request);
     }
 
-    public function cartDeleates(Request $request,MainRepository $mainRepository){
-        $mainRepository -> cartDeleates();
-        return redirect('/carts');
+    public function cartDeletes(Request $request,MainRepository $mainRepository){
+        $mainRepository -> cartDeletes($request);
     }
 
     public function changeCart(Request $request){
@@ -73,34 +70,21 @@ class MainController extends Controller
     }
 
     public function updateCart(Request $request,MainService $mainService){
-        $redirect = $mainService -> updateCart($request,$mainService);
-        return $redirect;
-    }
-
-    public function contactconfirm(Request $request){
-        $contact= [
-            'name' => $request -> name ,
-            'email' => $request -> email ,
-            'replyRequest' => $request -> replyRequest ,
-            'subject' => $request -> subject ,
-            'content' => $request -> content 
-            ];
-        return view('contactconfirm',$contact);
+        $mainService -> updateCart($request,$mainService);
     }
 
     public function sendContact(Request $request,MainService $mainService){
-        $redirect = $mainService -> sendContact($request,$mainService);
-        return $redirect;
+        $mainService -> sendContact($request,$mainService);
     }
 
     public function inquiryList(Request $request,MainRepository $mainRepository){
         $contacts = $mainRepository -> inquiryList();
-        return view('inquiryList',['contacts' => $contacts]);
+        return $contacts;
     }
     
     public function inquiry(Request $request,MainRepository $mainRepository){
         $contact = $mainRepository -> inquiry($request);
-        return view('inquiry',['contact' => $contact[0]]);
+        return $contact[0];
     }
 
     public function user(Request $request,MainRepository $mainRepository){
@@ -125,8 +109,10 @@ class MainController extends Controller
 
     public function userUpdate(Request $request,MainRepository $mainRepository){
         $mainRepository -> userUpdate($request);
-        $user = $mainRepository -> user();
-        return view('user',['user' => $user[0]]);
+    }
+
+    public function userDelete(Request $request,MainRepository $mainRepository){
+        $mainRepository -> userDelete($request);
     }
 
 }

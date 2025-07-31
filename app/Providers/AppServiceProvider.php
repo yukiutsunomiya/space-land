@@ -24,8 +24,6 @@ class AppServiceProvider extends ServiceProvider
         );
         app()->bind('MainService', 'App\Services\MainService');
         app()->bind('AdminService', 'App\Services\AdminService');
-        
-           
     }
 
     /**

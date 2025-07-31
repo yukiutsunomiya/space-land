@@ -509,7 +509,7 @@
   }
 
   .card{
-    height: 600px;
+    height: auto;
   }
 
   .card-writings{

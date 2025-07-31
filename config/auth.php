@@ -41,11 +41,12 @@ return [
             'provider' => 'users',
         ],
         'admin' => [   // ここ追加
-            'driver' => 'session',
+            'driver' => 'sanctum',
             'provider' => 'admins', // providerに追加した名前
         ],
         'api' => [
-            'driver' => 'token',
+            //'driver' => 'token',
+            'driver' => 'sanctum', // ✅ ここが `sanctum` になっているか？
             'provider' => 'users',
         ],
     ],

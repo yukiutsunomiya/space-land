@@ -1,40 +1,38 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\Auth\LoginRequest;
+
+use Illuminate\Http\JsonResponse;
+use App\Repositories\MainRepositoryInterface as MainRepository;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
+     * @param AuthManager $auth
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @param LoginRequest $request
+     * @return JsonResponse
+     * @throws AuthenticationException
      */
-    public function __construct()
+    public function login(LoginRequest $request,MainRepository $mainRepository)
     {
-        $this->middleware('guest')->except('logout');
+        $credentials = $request->only('email', 'password');
+        $user = $mainRepository->attemptLogin($credentials);
+        if ($user) {
+            return response()->json([
+                'user' => $user,
+                'token' => $user->createToken('authToken')->plainTextToken,
+            ]);
+        }
+        return response()->json(['message' => 'Unauthorized'], 401);
     }
 }

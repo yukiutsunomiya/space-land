@@ -9,15 +9,15 @@ use App\Repositories\AdminRepositoryInterface as AdminRepository;
 
 class AdminController extends Controller
 {
-    public function users(Request $request,AdminRepository $adminRepository){
+    public function users(AdminRepository $adminRepository){
         $users = $adminRepository -> users();
-        return view('admin.users',['users' => $users]);
+        return $users;
     }
 
     public function user(Request $request,AdminRepository $adminRepository){
         $user = $adminRepository -> user($request);
-        $purchases = $adminRepository -> purchaseForEachUser($request);
-        return view('admin.user',['user' => $user[0],'purchases' => $purchases]);
+        //$purchases = $adminRepository -> purchaseForEachUser($request);
+        return $user;
     }
 
     public function userEdit(Request $request){
@@ -36,8 +36,7 @@ class AdminController extends Controller
     }
 
     public function userUpdate(Request $request,AdminService $adminService){
-        $user = $adminService -> userUpdate($request);
-        return view('admin.user',['user' => $user[0]]);
+        $adminService -> userUpdate($request);
     }
 
     public function userDelete(Request $request,AdminRepository $adminRepository){
@@ -47,42 +46,45 @@ class AdminController extends Controller
 
     public function userCart(Request $request,AdminRepository $adminRepository){
         $carts = $adminRepository -> cartSelect($request);
-        return view('admin.userCart',['carts' => $carts,'user_id' => $request -> id,'user_name' =>  $request -> name]);
+        return $carts;
     }
 
     public function userInquiryList(Request $request,AdminRepository $adminRepository){
         $contacts = $adminRepository -> userInquiryList($request);
-        return view('admin.userInquiryList',['contacts' => $contacts,'id' =>  $request -> id,'user_name' =>  $request -> name]);
+        return $contacts;
     }
 
     public function userInquiry(Request $request,AdminRepository $adminRepository){
         $contact = $adminRepository -> userInquiry($request);
-        return view('admin.userInquiry',['contact' => $contact[0],'user_name' =>  $request -> name]);
+        return $contact;
     }
     
     public function orderHistory(Request $request,AdminService $adminService){
-        $redirect = $adminService -> orderHistory($request);
-        return $redirect;
+        $purchases  = $adminService -> orderHistory($request);
+        return $purchases;
     }
 
-    public function inquiryList(Request $request,AdminRepository $adminRepository){
+    public function inquiryList(AdminRepository $adminRepository){
         $contacts = $adminRepository -> contactsSelect();
-        return view('admin.inquiryList',['contacts' => $contacts]);
+        return $contacts;
     }
 
     public function inquiry(Request $request,AdminRepository $adminRepository){
         $contact = $adminRepository -> contactSelect($request);
-        return view('admin.inquiry',['contact' => $contact[0]]);
+        return $contact[0];
     }
     
-    public function shipUpdate(Request $request,AdminService $adminService){
-        $redirect = $adminService -> shipUpdate($request);
-        return $redirect;
+    public function shipUpdate(Request $request,AdminRepository $adminRepository){
+        $adminRepository -> purchaseUpdate($request);
+        //$redirect = $adminService -> shipUpdate($request);
+        //return $redirect;
     }
 
-    public function situationUpdate(Request $request,AdminService $adminService){
-        $redirect = $adminService -> situationUpdate($request);
-        return $redirect;
+    public function situationUpdate(Request $request,AdminRepository $adminRepository){
+        //$adminService -> situationUpdate($request);
+        $adminRepository -> contactUpdate($request);
+        //$redirect = $adminService -> situationUpdate($request);
+        //return $redirect;
     }
 
     public function userOrderHistory(Request $request,AdminService $adminService){
@@ -91,30 +93,23 @@ class AdminController extends Controller
     }
 
     public function productRegistrationConfirmation(Request $request,AdminService $adminService){
-        $product = adminService -> productRegistrationConfirmation($request);
+        $products = $adminService -> productRegistrationConfirmation($request);
         return view('admin.productRegistrationConfirmation',$products);
     }
 
-    public function products(Request $request,AdminRepository $adminRepository){
+    public function products(AdminRepository $adminRepository){
         $products = $adminRepository ->productsSelect();
         return view('admin.products',['products' => $products]);
     }
 
-    public function product(Request $request){
-        $product = [
-            'id'=> $request-> id,
-            'name'=> $request-> name,
-            'price'=> $request-> price,
-            'img1'=> $request-> img1,
-            'img2'=> $request-> img2,
-            'description'=> $request-> description,
-            'releaseYear'=> $request-> releaseYear,
-            'releaseMonth'=> $request -> releaseMonth,
-            'releaseDate'=> $request -> releaseDate,
-            'order'=> $request -> order,
-            'situation'=> $request -> releaseDate,
-        ];
-        return view('admin.product',$product);
+    public function product(Request $request,AdminRepository $adminRepository){
+        $product = $adminRepository -> productSelect($request);
+        return $product;
+    }
+
+    public function userPurchases(Request $request,AdminRepository $adminRepository){
+        $purchases = $adminRepository ->purchaseForEachUser($request);
+        return $purchases;
     }
 
 }

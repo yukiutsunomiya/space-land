@@ -3,7 +3,11 @@
 namespace App\Repositories;
 use App\Repositories\AdminRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Auth\AuthManager;
+use App\Models\Admin;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 class AdminRepository implements AdminRepositoryInterface
 {
@@ -15,12 +19,12 @@ class AdminRepository implements AdminRepositoryInterface
     public function user(Request $request){
         $param = ['id' => $request -> id ];
         $user = DB::select('select * from users where id = :id', $param);
-        return $user;
+        return $user[0];
     }
 
     public function purchaseForEachUser(Request $request){
-        $param = ['user_id' => $request -> user_id ];
-        $purchases = DB::select('select * from purchases where user_id = :user_id ORDER BY id DESC',$param);
+        $param = ['id' => $request -> id ];
+        $purchases = DB::select('select * from purchases where user_id = :id ORDER BY id DESC',$param);
         return $purchases;
     }
 
@@ -32,7 +36,7 @@ class AdminRepository implements AdminRepositoryInterface
 
     public function purchaseForEachUserAndShip(Request $request){
         $params= [
-            'id' =>  $request -> user_id,
+            'id' =>  $request -> id,
             'ship' =>  $request -> ship
         ];
         $purchases = DB::select('select * from purchases where user_id = :id and ship = :ship ORDER BY id DESC',$params);
@@ -137,12 +141,46 @@ class AdminRepository implements AdminRepositoryInterface
             'id' =>  $request -> id
         ];
         $contact = DB::select('select * from contacts where id = :id',$param);
-        return $contact;
+        return $contact[0];
     }
 
     public function productsSelect(){
         $products = DB::select('select * from products');
         return $products;
+    }
+
+    public function productSelect(Request $request){
+        $param= [
+            'id' =>  $request -> id
+        ];
+        $product = DB::select('select * from products where id = :id',$param);
+        return $product[0];
+    }
+
+    public function attemptLogin(array $credentials): ?Admin
+    {
+        $admin = Admin::where('email', $credentials['email'])->first();
+
+        if ($admin && Hash::check($credentials['password'], $admin->password)) {
+            return $admin;
+        }
+
+        return null;
+    }
+
+    public function userCreate(Request $request)
+    {
+        $user = Admin::create([
+            'name' => $request-> name,
+            'email' => $request-> email,
+            'password' => Hash::make($request-> password),
+            'furigana' => $request-> furigana,
+            'telephone' => $request-> telephone,
+            'zipCode' => $request-> zipCode,
+            'prefectures' => $request-> prefectures,
+            'address' => $request-> address,
+        ]);
+        return $user;
     }
 
 }

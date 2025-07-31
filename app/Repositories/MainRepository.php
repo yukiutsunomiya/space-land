@@ -5,6 +5,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Repositories\MainRepositoryInterface;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\AuthManager;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash; 
+
 
 use App\Mail\sendMail;
 
@@ -24,28 +29,28 @@ class MainRepository implements MainRepositoryInterface
     }
 
     public function cartInsert(Request $request){
-        $user_id = auth()->id();
+        //$user_id = auth()->id();
         $params= [
             'product_id' => $request -> product_id ,
             'name' => $request -> name ,
             'img1' => $request -> img1 ,
             'img2' => $request -> img2 ,
             'price' => $request -> price ,
-            'user_id' => $user_id,
+            'user_id' => $request -> user_id,
             'quantity' => $request -> quantity,
         ];
         DB::insert('insert into carts (product_id,name,price,img1,img2,user_id,quantity) values (:product_id,:name,:price,:img1,:img2,:user_id,:quantity)',$params);
     }
 
     public function purchaseInsert(Request $request){
-        $user_id = auth()->id();
+        //$user_id = auth()->id();
         $params= [
             'product_id' => $request -> product_id ,
             'name' => $request -> name ,
             'img1' => $request -> img1 ,
             'img2' => $request -> img2 ,
             'price' => $request -> price ,
-            'user_id' => $user_id,
+            'user_id' => $request -> user_id,
             'quantity' => $request -> quantity,
             'ship' => $request -> ship,
         ];
@@ -56,7 +61,7 @@ class MainRepository implements MainRepositoryInterface
     public function cartSelect(){
         $params= [
             'user_id' => auth()->id()
-            ];
+        ];
         $carts = DB::select('select * from carts where user_id = :user_id ORDER BY id DESC;',$params);
         return $carts;
     }
@@ -69,18 +74,18 @@ class MainRepository implements MainRepositoryInterface
         return $purchases;
      }
 
-    public function cartDeleate(Request $request){
+    public function cartDelete(Request $request){
         $param= [
             'id' => $request -> id
-            ];
+        ];
         DB::delete('delete from carts where id = :id',$param);
         
     }
 
-    public function cartDeleates(){
+    public function cartDeletes(Request $request){
         $params= [
             'user_id' => $request -> user_id
-            ];
+        ];
         DB::delete('delete from carts where user_id = :user_id',$params);
     }
 
@@ -90,13 +95,13 @@ class MainRepository implements MainRepositoryInterface
             'quantity' => $request -> quantity
             ];
         DB::update('update carts set quantity = :quantity where id = :id',$params);
-        return redirect('/carts');
+        //return redirect('/carts');
     }
 
     public function inquiryList(){
         $param= [
             'user_id' => auth()->id()
-            ];
+        ];
         $contacts = DB::select('select * from contacts where user_id = :user_id ORDER BY id DESC',$param);
         return $contacts;
     }
@@ -110,14 +115,13 @@ class MainRepository implements MainRepositoryInterface
     }
 
     public function contactInsertContainsUserId(Request $request){
-        $user_id = auth()->id();
         $contact= [
             'name' => $request -> name ,
             'email' => $request -> email ,
             'replyRequest' => $request -> replyRequest ,
             'subject' => $request -> subject ,
             'content' => $request -> content ,
-            'user_id' => $user_id,
+            'user_id' => $request -> user_id,
             'admin_situation'  => $request -> admin_situation
         ];
         DB::insert('insert into contacts (name,email,replyRequest,subject,content,user_id,admin_situation,created_at) values (:name,:email,:replyRequest,:subject,:content,:user_id,:admin_situation,CURRENT_TIMESTAMP)',$contact);
@@ -155,5 +159,36 @@ class MainRepository implements MainRepositoryInterface
             'address'=> $request -> address,
         ];
         DB::update('update users set name = :name,furigana = :furigana,telephone = :telephone,email = :email,zipCode = :zipCode,prefectures = :prefectures,address = :address where id = :id', $params);
+    }
+
+    public function attemptLogin(array $credentials)
+    {
+        $auth = app(AuthManager::class); 
+        // 認証処理
+        if ($auth->guard()->attempt($credentials)) {
+            $user = $auth->guard()->user();
+            return $user;
+        }
+        return null; // 認証失敗時はnullを返す
+    }
+
+    public function userCreate($request)
+    {
+        $user = User::create([
+            'name' => $request-> name,
+            'email' => $request-> email,
+            'password' => Hash::make($request-> password),
+            'furigana' => $request-> furigana,
+            'telephone' => $request-> telephone,
+            'zipCode' => $request-> zipCode,
+            'prefectures' => $request-> prefectures,
+            'address' => $request-> address,
+        ]);
+        return $user;
+    }
+
+    public function userDelete(Request $request){    
+        $params = ['id' => $request->id];
+        DB::delete('DELETE FROM users WHERE id = :id', $params);
     }
 }

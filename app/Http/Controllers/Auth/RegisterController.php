@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Repositories\MainRepositoryInterface as MainRepository;
 
 class RegisterController extends Controller
 {
@@ -65,17 +68,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(Request $request,MainRepository $mainRepository)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'furigana' => $data['furigana'],
-            'telephone' => $data['telephone'],
-            'zipCode' => $data['zipCode'],
-            'prefectures' => $data['prefectures'],
-            'address' => $data['address'],
-        ]);
+        $user = $mainRepository -> userCreate($request);
+        if ($user) {
+            return response()->json([
+                'user' => $user,
+                'token' => $user->createToken('authToken')->plainTextToken,
+            ]);
+        }
+        return response()->json(['message' => 'Unauthorized'], 401);
     }
 }

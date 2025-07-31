@@ -13,13 +13,12 @@ class MainService
     public function confirm(Request $request)
     {
         $mainRepository = app() -> make("\App\Repositories\MainRepository");
-        if($request->has('cart')){
+        if($request->input('action') =='cart'){
             $mainRepository -> cartInsert($request);
-            return redirect('/carts');
-
-        }elseif($request->has('purchase')){
+            //return redirect('/carts');
+        }elseif($request->input('action') =='purchase'){
             $mainRepository -> purchaseInsert($request);
-            $mainRepository -> cartDeleate($request);
+            $mainRepository -> cartDelete($request);
             //メッセージ内容
             $user_name = auth()->user()->name;
             $commodity_name = $request -> name;
@@ -56,18 +55,18 @@ class MainService
             var_dump($res); //string(29) "{"status":200,"message":"ok"}"
             //ここまでLINE通知
 
-            return redirect('/purchases');
+            //return redirect('/purchases');
         }                     
     }
 
     public function updateCart(Request $request){
         $mainRepository = app() -> make("\App\Repositories\MainRepository");
-        if($request->has('cart')){
+        if($request->input('action') =='cart'){
             $mainRepository -> cartUpdate($request);
-            return redirect('/carts');
-        }elseif($request->has('purchase')){
+            //return redirect('/carts');
+        }elseif($request->input('action') =='purchase'){
             $mainRepository -> purchaseInsert($request);
-            $mainRepository -> cartDeleate($request);
+            $mainRepository -> cartDelete($request);
             //メッセージ内容
             $user_name = auth()->user()->name;
             $commodity_name = $request -> name;
@@ -104,7 +103,7 @@ class MainService
             var_dump($res); //string(29) "{"status":200,"message":"ok"}"
             //ここまでLINE通知
 
-            return redirect('/purchases');
+            //return redirect('/purchases');
         }
     }
 
@@ -114,23 +113,13 @@ class MainService
         $request->validate([
             'email' => 'required|email',
         ]);
+        if ($request->user_id !== "") {
+            $mainRepository -> contactInsertContainsUserId($request);
+        }else{
+            $mainRepository -> contactInsert($request);
+        }
+
         // actionの値を取得
-        //actionの値で分岐
-        if($request->has('back')){
-            // 戻るボタンの場合リダイレクト処理
-            $contact= [
-                'name' => $request -> name ,
-                'email' => $request -> email ,
-                'subject' => $request -> subject ,
-                'content' => $request -> content ,
-                ];
-            return view('contact',$contact);
-        }elseif($request->has('submit')){
-            if (Auth::check()) {
-                $mainRepository -> contactInsertContainsUserId($request);
-            }else{
-                $mainRepository -> contactInsert($request);
-            }
             
             /*
             // 送信ボタンの場合、送信処理
@@ -180,14 +169,15 @@ class MainService
             $res = file_get_contents($url, false, stream_context_create($context));
             //var_dump($res); //string(29) "{"status":200,"message":"ok"}"
             //ここまでLINE通知
-
+            /*
             if(Auth::check()){
                 return redirect('/inquiryList');
             }else{
                 return view('sendCompletely');
             }
+            */
             
-        }
+        
     }
 
 }
